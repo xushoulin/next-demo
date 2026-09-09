@@ -4,8 +4,14 @@ import { convertToModelMessages, streamText, UIMessage } from "ai";
 // 阿里百炼（DashScope）OpenAI 兼容 provider
 const dashscope = createOpenAI({
   apiKey: process.env.DASHSCOPE_API_KEY,
-  baseURL: process.env.DASHSCOPE_API_BASE ?? "https://dashscope.aliyuncs.com/compatible-mode/v1",
+  baseURL:
+    process.env.DASHSCOPE_API_BASE ??
+    "https://dashscope.aliyuncs.com/compatible-mode/v1",
 });
+console.log(
+  "OPENAI_API_KEY:",
+  process.env.OPENAI_API_KEY ? "exists" : "missing",
+);
 
 export async function POST(req: Request) {
   const { messages }: { messages: UIMessage[] } = await req.json();
