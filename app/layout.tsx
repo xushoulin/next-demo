@@ -13,6 +13,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="zh-CN">
+      <head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2622415797490761"
+          crossorigin="anonymous"
+        ></script>
+      </head>
       <body className="min-h-screen antialiased">{children}</body>
     </html>
   );
