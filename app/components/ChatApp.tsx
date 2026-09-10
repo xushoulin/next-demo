@@ -4,6 +4,7 @@ import { useCallback, useRef, useState } from "react";
 import { AGENTS, getAgentMeta, type AgentId } from "@/lib/agents";
 import AgentTabs from "./AgentTabs";
 import AmbientBackground from "./AmbientBackground";
+import BaziPanel from "./BaziPanel";
 import ChatPanel from "./ChatPanel";
 
 /** 应用外壳：持有角色切换状态、顶部品牌区与背景，各角色会话相互独立 */
@@ -42,13 +43,15 @@ export default function ChatApp() {
               </div>
             </div>
 
-            <button
-              type="button"
-              onClick={() => clearHandlers.current[activeId]?.()}
-              className="shrink-0 rounded-lg border border-white/10 px-3 py-1.5 text-xs text-slate-300 transition hover:border-white/25 hover:text-white"
-            >
-              清空对话
-            </button>
+            {agent.kind === "chat" && (
+              <button
+                type="button"
+                onClick={() => clearHandlers.current[activeId]?.()}
+                className="shrink-0 rounded-lg border border-white/10 px-3 py-1.5 text-xs text-slate-300 transition hover:border-white/25 hover:text-white"
+              >
+                清空对话
+              </button>
+            )}
           </div>
 
           <div className="py-3">
@@ -58,14 +61,22 @@ export default function ChatApp() {
       </header>
 
       <main className="relative z-10 min-h-0 flex-1">
-        {AGENTS.map((item) => (
-          <ChatPanel
-            key={item.id}
-            agent={item}
-            active={item.id === activeId}
-            registerClear={registerClear}
-          />
-        ))}
+        {AGENTS.map((item) =>
+          item.kind === "bazi" ? (
+            <BaziPanel
+              key={item.id}
+              agent={item}
+              active={item.id === activeId}
+            />
+          ) : (
+            <ChatPanel
+              key={item.id}
+              agent={item}
+              active={item.id === activeId}
+              registerClear={registerClear}
+            />
+          ),
+        )}
       </main>
     </div>
   );

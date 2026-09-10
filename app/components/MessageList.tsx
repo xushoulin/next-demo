@@ -1,12 +1,12 @@
 "use client";
 
 import type { UIMessage } from "ai";
-import type { AgentMeta } from "@/lib/agents";
+import type { ChatAgentMeta } from "@/lib/agents";
 import MessageBubble from "./MessageBubble";
 import ThinkingIndicator from "./ThinkingIndicator";
 
 type MessageListProps = {
-  agent: AgentMeta;
+  agent: ChatAgentMeta;
   messages: UIMessage[];
   /** 是否处于请求等待 / 流式生成中 */
   busy: boolean;

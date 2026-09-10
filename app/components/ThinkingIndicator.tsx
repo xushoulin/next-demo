@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import type { AgentMeta } from "@/lib/agents";
+import type { ChatAgentMeta } from "@/lib/agents";
 
 /**
  * 大模型请求等待态。
@@ -42,7 +42,7 @@ function useRotatingText(texts: string[], interval = 2600): string {
   return texts[index] ?? texts[0] ?? "正在生成…";
 }
 
-export default function ThinkingIndicator({ agent }: { agent: AgentMeta }) {
+export default function ThinkingIndicator({ agent }: { agent: ChatAgentMeta }) {
   const text = useRotatingText(agent.thinkingTexts);
 
   return (

@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import type { AgentMeta } from "@/lib/agents";
+import type { ChatAgentMeta } from "@/lib/agents";
 
 const MAX_HEIGHT = 160;
 const MIN_HEIGHT = 24;
 
 type ComposerProps = {
-  agent: AgentMeta;
+  agent: ChatAgentMeta;
   /** 所在面板是否可见：隐藏时无法测量高度，必须避免写入错误值 */
   active: boolean;
   value: string;

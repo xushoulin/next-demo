@@ -1,8 +1,9 @@
-import type { AgentMeta } from "../types";
+import type { ChatAgentMeta } from "../types";
 
 /** AI 周公解梦 —— 客户端可见元数据 */
-export const DREAM_AGENT: AgentMeta = {
+export const DREAM_AGENT: ChatAgentMeta = {
   id: "dream",
+  kind: "chat",
   name: "AI 周公解梦",
   tagline: "传统典籍 × 现代心理学 · 梦境解读",
   icon: "🌙",

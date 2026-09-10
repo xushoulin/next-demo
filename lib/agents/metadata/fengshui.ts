@@ -1,8 +1,9 @@
-import type { AgentMeta } from "../types";
+import type { ChatAgentMeta } from "../types";
 
 /** AI 风水先生 —— 客户端可见元数据 */
-export const FENGSHUI_AGENT: AgentMeta = {
+export const FENGSHUI_AGENT: ChatAgentMeta = {
   id: "fengshui",
+  kind: "chat",
   name: "AI 风水先生",
   tagline: "形势 · 理气 · 五行 · 家居办公布局解析",
   icon: "🧭",

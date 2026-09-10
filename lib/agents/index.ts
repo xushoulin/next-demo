@@ -4,10 +4,21 @@
  */
 export type {
   AgentId,
+  AgentKind,
   AgentMeta,
   AgentTheme,
   AmbientVariant,
+  BaziAgentMeta,
+  ChatAgentId,
+  ChatAgentMeta,
   Suggestion,
+  ToolAgentId,
 } from "./types";
 
-export { AGENTS, AGENT_IDS, getAgentMeta, isAgentId } from "./metadata";
+export {
+  AGENTS,
+  AGENT_IDS,
+  getAgentMeta,
+  isAgentId,
+  isChatAgentId,
+} from "./metadata";

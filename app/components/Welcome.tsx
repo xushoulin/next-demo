@@ -1,10 +1,10 @@
 "use client";
 
-import type { AgentMeta } from "@/lib/agents";
+import type { ChatAgentMeta } from "@/lib/agents";
 import SuggestionGrid from "./SuggestionGrid";
 
 type WelcomeProps = {
-  agent: AgentMeta;
+  agent: ChatAgentMeta;
   disabled: boolean;
   onPick: (text: string) => void;
 };

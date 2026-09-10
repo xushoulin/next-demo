@@ -3,7 +3,7 @@
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport, type UIMessage } from "ai";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import type { AgentMeta } from "@/lib/agents";
+import type { ChatAgentMeta } from "@/lib/agents";
 
 const STORAGE_PREFIX = "xuanji-ai-chat";
 
@@ -11,7 +11,7 @@ const STORAGE_PREFIX = "xuanji-ai-chat";
  * 单个 Agent 的会话 Hook。
  * 职责：流式对话、按 Agent 隔离的本地持久化、提交/停止/清空。
  */
-export function useChatSession(agent: AgentMeta) {
+export function useChatSession(agent: ChatAgentMeta) {
   const storageKey = `${STORAGE_PREFIX}:${agent.id}`;
 
   // agentId 随请求体下发，由服务端角色注册表决定使用哪个提示词

@@ -1,13 +1,13 @@
 "use client";
 
 import type { UIMessage } from "ai";
-import type { AgentMeta } from "@/lib/agents";
+import type { ChatAgentMeta } from "@/lib/agents";
 import { getMessageText } from "@/lib/utils";
 import Markdown from "./Markdown";
 import { ThinkingDots } from "./ThinkingIndicator";
 
 type MessageBubbleProps = {
-  agent: AgentMeta;
+  agent: ChatAgentMeta;
   message: UIMessage;
 };
 

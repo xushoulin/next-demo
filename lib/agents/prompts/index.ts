@@ -1,4 +1,4 @@
-import type { AgentId } from "../types";
+import type { ChatAgentId } from "../types";
 import { DREAM_SYSTEM_PROMPT } from "./dream";
 import { FENGSHUI_SYSTEM_PROMPT } from "./fengshui";
 
@@ -12,7 +12,8 @@ export type AgentRuntime = {
   temperature: number;
 };
 
-export const AGENT_RUNTIME: Record<AgentId, AgentRuntime> = {
+/** 仅对话型角色需要运行时提示词 */
+export const AGENT_RUNTIME: Record<ChatAgentId, AgentRuntime> = {
   // 温度过低会诱发重复罗列的退化循环，配合 topP=0.8 使用 0.7~0.75
   dream: {
     systemPrompt: DREAM_SYSTEM_PROMPT,

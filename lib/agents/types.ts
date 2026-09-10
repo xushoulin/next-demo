@@ -1,9 +1,22 @@
 /**
  * Agent（AI 角色）领域模型 —— 纯类型定义，不包含任何实现，可被前后端共享。
+ *
+ * 角色分两类，以 `kind` 作可辨识字段：
+ * - chat：对话型角色（解梦、风水），渲染 ChatPanel；
+ * - bazi：工具型角色（八字排盘），无对话，渲染专属面板。
  */
 
+/** 对话型角色 ID */
+export type ChatAgentId = "dream" | "fengshui";
+
+/** 工具型角色 ID */
+export type ToolAgentId = "bazi";
+
 /** 已注册的 AI 角色 ID */
-export type AgentId = "dream" | "fengshui";
+export type AgentId = ChatAgentId | ToolAgentId;
+
+/** 角色形态 */
+export type AgentKind = "chat" | "bazi";
 
 /** 背景装饰变体 */
 export type AmbientVariant = "stars" | "mountains";
@@ -55,13 +68,8 @@ export type Suggestion = {
   text: string;
 };
 
-/**
- * 客户端可见的角色元数据。
- * 注意：不得包含 systemPrompt 等需保密的内容。
- */
-export type AgentMeta = {
-  id: AgentId;
-  /** 角色名称 */
+/** 所有角色共享的基础信息 */
+type AgentBase = {
   name: string;
   /** 一句话定位 */
   tagline: string;
@@ -73,11 +81,32 @@ export type AgentMeta = {
   welcomeText: string;
   /** 免责声明 */
   disclaimer: string;
+  theme: AgentTheme;
+};
+
+/**
+ * 对话型角色元数据。
+ * 注意：不得包含 systemPrompt 等需保密的内容。
+ */
+export type ChatAgentMeta = AgentBase & {
+  id: ChatAgentId;
+  kind: "chat";
   /** 等待大模型回复时轮播展示的提示语 */
   thinkingTexts: string[];
   /** 输入框占位文案 */
   inputPlaceholder: string;
   /** 快捷提问 */
   suggestions: Suggestion[];
-  theme: AgentTheme;
 };
+
+/**
+ * 工具型角色元数据（无对话）。
+ * 注意：不得包含 systemPrompt 等需保密的内容。
+ */
+export type BaziAgentMeta = AgentBase & {
+  id: ToolAgentId;
+  kind: "bazi";
+};
+
+/** 客户端可见的全部角色元数据 */
+export type AgentMeta = ChatAgentMeta | BaziAgentMeta;

@@ -1,14 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import type { AgentId, AgentMeta } from "@/lib/agents";
+import type { AgentId, ChatAgentMeta } from "@/lib/agents";
 import { useChatSession } from "@/lib/hooks/use-chat-session";
 import Composer from "./Composer";
 import MessageList from "./MessageList";
 import Welcome from "./Welcome";
 
 type ChatPanelProps = {
-  agent: AgentMeta;
+  agent: ChatAgentMeta;
   /** 是否为当前展示的面板 */
   active: boolean;
   /** 向父级注册本面板的「清空」实现 */

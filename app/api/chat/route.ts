@@ -1,5 +1,5 @@
 import { convertToModelMessages, streamText, type UIMessage } from "ai";
-import { isAgentId } from "@/lib/agents";
+import { isAgentId, isChatAgentId } from "@/lib/agents";
 import { AGENT_RUNTIME } from "@/lib/agents/prompts";
 import { DEFAULT_MODEL, SAMPLING, dashscope } from "@/lib/server/dashscope";
 import { toUserFacingError } from "@/lib/server/errors";
@@ -37,6 +37,11 @@ export async function POST(req: Request) {
 
   if (!isAgentId(agentId)) {
     return jsonError("未知的角色 ID。", 400);
+  }
+
+  // 工具型角色（如八字排盘）不走大模型对话
+  if (!isChatAgentId(agentId)) {
+    return jsonError("该模块不支持对话。", 400);
   }
 
   if (!Array.isArray(messages) || messages.length === 0) {
