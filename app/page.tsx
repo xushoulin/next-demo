@@ -1,5 +1,5 @@
-import DreamChat from "./components/DreamChat";
+import ChatApp from "./components/ChatApp";
 
 export default function Home() {
-  return <DreamChat />;
+  return <ChatApp />;
 }
