@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Next.js Demo · 待办事项",
-  description: "一个用 Next.js App Router 写的待办事项小 demo",
+  title: "AI 周公解梦 · 梦境解读助手",
+  description:
+    "融合《周公解梦》传统典籍与现代心理学的 AI 梦境解读助手，基于阿里云百炼大模型。",
 };
 
 export default function RootLayout({
