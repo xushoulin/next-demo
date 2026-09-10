@@ -67,7 +67,12 @@ export default function ChatPanel({
           {messages.length === 0 ? (
             <Welcome agent={agent} disabled={isBusy} onPick={handlePick} />
           ) : (
-            <MessageList agent={agent} messages={messages} error={error} />
+            <MessageList
+              agent={agent}
+              messages={messages}
+              busy={isBusy}
+              error={error}
+            />
           )}
         </div>
       </div>

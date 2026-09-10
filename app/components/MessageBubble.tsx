@@ -4,25 +4,12 @@ import type { UIMessage } from "ai";
 import type { AgentMeta } from "@/lib/agents";
 import { getMessageText } from "@/lib/utils";
 import Markdown from "./Markdown";
+import { ThinkingDots } from "./ThinkingIndicator";
 
 type MessageBubbleProps = {
   agent: AgentMeta;
   message: UIMessage;
 };
-
-function TypingIndicator({ dotClass }: { dotClass: string }) {
-  return (
-    <div className="flex items-center gap-1.5 py-1" aria-label="正在生成">
-      {[0, 1, 2].map((dot) => (
-        <span
-          key={dot}
-          className={`h-2 w-2 rounded-full animate-bounce ${dotClass}`}
-          style={{ animationDelay: `${dot * 0.15}s` }}
-        />
-      ))}
-    </div>
-  );
-}
 
 export default function MessageBubble({ agent, message }: MessageBubbleProps) {
   const text = getMessageText(message);
@@ -50,7 +37,16 @@ export default function MessageBubble({ agent, message }: MessageBubbleProps) {
         {text ? (
           <Markdown content={text} theme={agent.theme} />
         ) : (
-          <TypingIndicator dotClass={agent.theme.bullet} />
+          <div
+            role="status"
+            aria-live="polite"
+            className="flex items-center gap-2.5 py-0.5"
+          >
+            <ThinkingDots dotClass={agent.theme.bullet} />
+            <span className="text-sm leading-relaxed text-slate-400">
+              正在生成…
+            </span>
+          </div>
         )}
       </div>
     </div>

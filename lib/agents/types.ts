@@ -73,6 +73,8 @@ export type AgentMeta = {
   welcomeText: string;
   /** 免责声明 */
   disclaimer: string;
+  /** 等待大模型回复时轮播展示的提示语 */
+  thinkingTexts: string[];
   /** 输入框占位文案 */
   inputPlaceholder: string;
   /** 快捷提问 */
