@@ -1,14 +1,17 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import type { BaziAgentMeta } from "@/lib/agents";
 import { buildBaziChart, daysInMonth, hourToBranch } from "@/lib/bazi";
+import type { BaziRecord } from "@/lib/db/types";
 import BaziResult from "./BaziResult";
 
 type BaziPanelProps = {
   agent: BaziAgentMeta;
   /** 是否为当前展示的面板 */
   active: boolean;
+  /** 当前登录用户名（用于把排盘保存到数据库） */
+  username: string;
 };
 
 const CURRENT_YEAR = new Date().getFullYear();
@@ -49,7 +52,7 @@ function Field({
  * 八字排盘面板：输入出生年月日时，实时排出四柱、五行与十神。
  * 与对话面板同构（常驻挂载，激活时显示），保证切换 Tab 不丢失输入。
  */
-export default function BaziPanel({ agent, active }: BaziPanelProps) {
+export default function BaziPanel({ agent, active, username }: BaziPanelProps) {
   const [year, setYear] = useState(1995);
   const [month, setMonth] = useState(6);
   const [day, setDay] = useState(15);
@@ -63,6 +66,57 @@ export default function BaziPanel({ agent, active }: BaziPanelProps) {
     () => buildBaziChart({ year, month, day: safeDay, hour }),
     [year, month, safeDay, hour],
   );
+
+  const [records, setRecords] = useState<BaziRecord[]>([]);
+  const [saving, setSaving] = useState(false);
+  const [savedAt, setSavedAt] = useState<number | null>(null);
+
+  const loadRecords = useCallback(async () => {
+    try {
+      const res = await fetch("/api/bazi");
+      if (res.ok) {
+        const data = (await res.json()) as { records: BaziRecord[] };
+        setRecords(data.records ?? []);
+      }
+    } catch {
+      // 数据库暂不可用时忽略
+    }
+  }, []);
+
+  // 登录后加载历史排盘
+  useEffect(() => {
+    if (username) void loadRecords();
+  }, [username, loadRecords]);
+
+  const saveChart = useCallback(async () => {
+    if (!username) return;
+    setSaving(true);
+    try {
+      const res = await fetch("/api/bazi", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          input: { year, month, day: safeDay, hour },
+          chart,
+        }),
+      });
+      if (res.ok) {
+        setSavedAt(Date.now());
+        void loadRecords();
+      }
+    } catch {
+      // 忽略保存失败
+    } finally {
+      setSaving(false);
+    }
+  }, [username, year, month, safeDay, hour, chart, loadRecords]);
+
+  const loadRecord = useCallback((record: BaziRecord) => {
+    setYear(record.year);
+    setMonth(record.month);
+    setDay(record.day);
+    setHour(record.hour);
+  }, []);
 
   return (
     <section
@@ -162,6 +216,66 @@ export default function BaziPanel({ agent, active }: BaziPanelProps) {
           <div className="mt-6">
             <BaziResult agent={agent} chart={chart} />
           </div>
+
+          {username && (
+            <div className="mt-6 rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm sm:p-5">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <h3 className={`text-sm font-semibold ${agent.theme.title}`}>
+                  我的排盘记录
+                </h3>
+                <div className="flex items-center gap-2">
+                  {savedAt && (
+                    <span className="text-[11px] text-emerald-300">
+                      已保存到本地数据库 ✓
+                    </span>
+                  )}
+                  <button
+                    type="button"
+                    onClick={() => void saveChart()}
+                    disabled={saving}
+                    className="rounded-lg bg-gradient-to-br from-amber-500 to-purple-700 px-3 py-1.5 text-xs font-medium text-white shadow-lg shadow-violet-950/40 transition hover:from-amber-400 hover:to-purple-600 disabled:cursor-not-allowed disabled:opacity-50"
+                  >
+                    {saving ? "保存中…" : "保存此排盘"}
+                  </button>
+                </div>
+              </div>
+
+              {records.length === 0 ? (
+                <p className="mt-3 text-xs leading-relaxed text-slate-500">
+                  暂无记录，调整出生时间后点击「保存此排盘」即可留档。
+                </p>
+              ) : (
+                <ul className="mt-3 space-y-2">
+                  {records.map((record) => (
+                    <li key={record.id}>
+                      <button
+                        type="button"
+                        onClick={() => loadRecord(record)}
+                        className="flex w-full items-center justify-between gap-3 rounded-xl border border-white/10 bg-slate-950/30 px-3 py-2.5 text-left transition hover:border-amber-400/50"
+                      >
+                        <span className="min-w-0">
+                          <span className="block text-sm text-slate-100">
+                            {record.year} 年 {record.month} 月 {record.day} 日{" "}
+                            {String(record.hour).padStart(2, "0")}:00
+                          </span>
+                          <span className="block text-[11px] text-slate-500">
+                            日主 {record.chart.dayMaster.stem}
+                            {record.chart.dayMaster.element}
+                            {record.chart.missing.length > 0
+                              ? ` · 缺 ${record.chart.missing.join("")}`
+                              : " · 五行俱全"}
+                          </span>
+                        </span>
+                        <span className="shrink-0 text-[11px] text-slate-500">
+                          载入 →
+                        </span>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          )}
 
           <p className="mt-6 text-center text-[11px] leading-relaxed text-slate-600">
             {agent.disclaimer}

@@ -13,6 +13,8 @@ type ChatPanelProps = {
   active: boolean;
   /** 向父级注册本面板的「清空」实现 */
   registerClear: (id: AgentId, handler: () => void) => void;
+  /** 当前登录用户名（用于把对话持久化到数据库） */
+  username: string;
 };
 
 /**
@@ -23,9 +25,10 @@ export default function ChatPanel({
   agent,
   active,
   registerClear,
+  username,
 }: ChatPanelProps) {
   const { messages, error, isBusy, submit, clear, stop } =
-    useChatSession(agent);
+    useChatSession(agent, username);
   const [input, setInput] = useState("");
   const scrollRef = useRef<HTMLDivElement>(null);
 

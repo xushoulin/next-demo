@@ -14,7 +14,9 @@
 - **中文输入法友好**：拼音/五笔选词过程中按 Enter 只用于确认候选词，不会误发送半截内容
 - **结构化输出**：内置轻量 Markdown 渲染器，按小节呈现解读结果
 - **主题化皮肤**：每个角色一套配色与背景（星空 / 远山），配置驱动、组件零硬编码
-- **本地持久化**：对话按角色分别存入 localStorage，刷新不丢失
+- **本地持久化**：对话按角色分别存入 localStorage（未登录）或本地 MySQL 数据库（登录后），刷新不丢失
+- **用户名登录**：免密码登录，登录态以签名 Cookie 保存；登录后可跨设备/刷新保留数据
+- **数据持久化**：账户、八字排盘记录、各角色对话历史均存入本地数据库
 - **服务端鉴权**：API Key 与系统提示词只存在于服务端，不进入前端产物
 - **错误可行动**：额度、Key、模型、超时等上游错误统一归类为中文提示
 
@@ -27,6 +29,7 @@
 | 样式 | Tailwind CSS |
 | 大模型 | 阿里云百炼 DashScope（OpenAI 兼容模式） |
 | 流式 SDK | Vercel AI SDK（`ai` / `@ai-sdk/react` / `@ai-sdk/openai`） |
+| 数据库 | MySQL（`mysql2`，本地库，零额外服务） |
 
 ## 快速开始
 
@@ -46,9 +49,16 @@ cp .env.local.example .env.local
 DASHSCOPE_API_KEY=sk-你的百炼APIKey
 DASHSCOPE_MODEL=qwen-plus
 DASHSCOPE_API_BASE=https://dashscope.aliyuncs.com/compatible-mode/v1
+
+# 本地 MySQL 连接串（需先本地启动 MySQL 并建库，例如 CREATE DATABASE xuanji）
+DATABASE_URL=mysql://root:123456@localhost:3306/xuanji
+# 登录 Cookie 签名密钥（生产环境请替换为随机长字符串）
+AUTH_SECRET=replace-with-a-random-secret
 ```
 
 > API Key 获取：登录 [阿里云百炼控制台](https://bailian.console.aliyun.com/) → API-KEY 管理 → 创建新的 API-KEY。
+>
+> 数据库：本应用使用本地 MySQL。请先在本地启动 MySQL 服务并创建数据库（如上 `xuanji`），应用会在首次访问数据库时自动建表，无需手动执行 SQL。表结构说明见 `lib/db/schema.sql`。
 
 ### 3. 启动
 
@@ -61,9 +71,16 @@ npm run build && npm start   # 生产
 
 ```
 app/
-├── api/chat/route.ts          # 统一入口：校验 agentId → 取提示词 → 流式返回
+├── api/
+│   ├── chat/route.ts          # 统一入口：校验 agentId → 取提示词 → 流式返回
+│   ├── auth/                  # 用户名登录：login / logout / me（签名 Cookie）
+│   ├── bazi/route.ts          # 八字排盘记录：列出 / 保存
+│   └── conversations/route.ts # 对话历史：按 (用户, 角色) 读取 / 覆盖保存
 ├── components/
-│   ├── ChatApp.tsx            # 应用外壳：品牌区 + Tab 切换 + 背景
+│   ├── AppShell.tsx           # 登录态外壳：未登录显示登录页，已登录进入主应用
+│   ├── LoginScreen.tsx        # 用户名登录页
+│   ├── ChatApp.tsx            # 应用外壳：品牌区 + Tab 切换 + 背景 + 用户菜单
+│   ├── BaziPanel.tsx          # 八字面板：输入 + 排盘 + 保存 + 历史
 │   ├── ChatPanel.tsx          # 单角色会话面板：消息区 + 输入区（常驻挂载，切换不丢会话）
 │   ├── AgentTabs.tsx          # Tab 切换（WAI-ARIA）
 │   ├── MessageList.tsx        # 消息列表 + 错误提示
@@ -72,6 +89,7 @@ app/
 │   ├── Welcome.tsx            # 空会话欢迎页
 │   ├── SuggestionGrid.tsx     # 快捷提问卡片
 │   ├── AmbientBackground.tsx  # 主题化背景（星空 / 远山）
+│   ├── ThinkingIndicator.tsx  # 大模型请求中的加载指示器
 │   └── Markdown.tsx           # 轻量 Markdown 渲染器
 ├── globals.css
 ├── layout.tsx
@@ -88,7 +106,9 @@ lib/
 │       ├── dream.ts
 │       ├── fengshui.ts
 │       └── index.ts
-├── hooks/use-chat-session.ts  # 会话 Hook：流式 + 持久化 + 停止/清空
+├── db/                        # MySQL 数据层：连接池 + 查询 + 自动建表
+├── auth.ts                    # 读取 / 生成登录 Cookie（HMAC 签名）
+├── hooks/use-chat-session.ts  # 会话 Hook：流式 + 持久化（登录存库 / 未登录存本地）
 ├── server/
 │   ├── dashscope.ts           # 百炼 Provider
 │   └── errors.ts              # 上游错误归类
@@ -118,6 +138,8 @@ lib/
 | `DASHSCOPE_API_KEY` | 是 | 百炼 API Key，仅服务端读取 |
 | `DASHSCOPE_MODEL` | 否 | 模型名称，默认 `qwen-plus`；可换 `qwen-max`、`qwen-turbo` 等 |
 | `DASHSCOPE_API_BASE` | 否 | OpenAI 兼容地址，默认官方地址，一般无需修改 |
+| `DATABASE_URL` | 登录后持久化时必填 | 本地 MySQL 连接串，例如 `mysql://root:123456@localhost:3306/xuanji` |
+| `AUTH_SECRET` | 建议 | 登录 Cookie 签名密钥；不设置则使用不安全的开发默认值 |
 
 ## 部署到 Vercel
 
@@ -126,6 +148,14 @@ lib/
 3. 部署完成即可访问。
 
 ## 常见问题
+
+**Q：登录后提示「登录失败，请确认本地数据库已连接」？**
+
+说明 `DATABASE_URL` 未配置或本地 MySQL 未启动 / 数据库不存在。请先 `CREATE DATABASE xuanji`（或你的库名），确认连接串正确，并在 `.env.local` 中设置 `DATABASE_URL` 后重启服务。应用会在首次访问时自动建表。
+
+**Q：未登录也能用吗？数据存在哪？**
+
+可以。未登录时对话仍按角色存入浏览器 `localStorage`，刷新不丢失；登录后数据改为写入本地 MySQL 数据库（账户、八字排盘记录、各角色对话历史），可与同一用户名跨会话 / 跨设备共享。
 
 **Q：提示「百炼账户额度不足 / Free quota exhausted」？**
 
