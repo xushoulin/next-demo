@@ -8,11 +8,17 @@ import ChatPanel from "./ChatPanel";
 
 type ChatAppProps = {
   username: string;
+  /** true 表示数据库不可用，当前为本地模式（数据仅存本机） */
+  localMode?: boolean;
   onLogout: () => void;
 };
 
 /** 应用外壳：持有角色切换状态、顶部品牌区与背景，各角色会话相互独立 */
-export default function ChatApp({ username, onLogout }: ChatAppProps) {
+export default function ChatApp({
+  username,
+  localMode = false,
+  onLogout,
+}: ChatAppProps) {
   const [activeId, setActiveId] = useState<AgentId>(AGENTS[0].id);
   const clearHandlers = useRef<Partial<Record<AgentId, () => void>>>({});
 
@@ -68,6 +74,14 @@ export default function ChatApp({ username, onLogout }: ChatAppProps) {
                 <span className="max-w-[96px] truncate text-xs text-slate-200">
                   {username}
                 </span>
+                {localMode && (
+                  <span
+                    className="rounded bg-amber-500/15 px-1.5 py-0.5 text-[10px] leading-none text-amber-200"
+                    title="数据库未连接，对话仅保存在本机浏览器"
+                  >
+                    本地
+                  </span>
+                )}
               </div>
 
               <button

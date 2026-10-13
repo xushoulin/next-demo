@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { clearLocalUser, saveLocalUser } from "@/lib/local-user";
 
 type LoginScreenProps = {
   onLogin: (username: string) => void;
@@ -29,12 +30,23 @@ export default function LoginScreen({ onLogin }: LoginScreenProps) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username: name }),
       });
-      const data = await res.json();
+      const data = (await res.json()) as {
+        username?: string;
+        storage?: string;
+        error?: string;
+      };
       if (!res.ok) {
         setError(data.error ?? "登录失败，请稍后再试");
         return;
       }
-      onLogin(data.username);
+      const loggedIn = data.username || name;
+      // 数据库可用时清除本地兜底数据；不可用时把用户名保存到浏览器本地
+      if (data.storage === "local") {
+        saveLocalUser(loggedIn);
+      } else {
+        clearLocalUser();
+      }
+      onLogin(loggedIn);
     } catch {
       setError("网络错误，请确认服务已启动");
     } finally {

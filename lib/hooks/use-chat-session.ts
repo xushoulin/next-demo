@@ -9,7 +9,12 @@ const STORAGE_PREFIX = "yanzhi-ai-chat";
 
 /**
  * 单个 Agent 的会话 Hook。
- * 职责：流式对话、按 Agent 隔离的持久化（登录存数据库 / 未登录存本地）、提交/停止/清空。
+ * 职责：流式对话、按 Agent 隔离的持久化、提交/停止/清空。
+ *
+ * 存储策略（自动降级）：
+ * - 未登录：直接存浏览器本地。
+ * - 已登录：优先存数据库；若数据库不可用（连接失败 / 接口报错），
+ *   自动降级为本地存储，保证对话内容不会丢失。
  */
 export function useChatSession(agent: ChatAgentMeta, username: string) {
   const storageKey = `${STORAGE_PREFIX}:${agent.id}`;
@@ -32,10 +37,32 @@ export function useChatSession(agent: ChatAgentMeta, username: string) {
   // 始终持有最新消息，避免异步回调里读到过期闭包
   const messagesRef = useRef<UIMessage[]>(messages);
   messagesRef.current = messages;
-  // 是否已从服务端读取过历史：未读取前不回写，避免误清空数据库
-  const serverLoadedRef = useRef(false);
+  // 数据库可用性：null=尚未探测，true=可用，false=不可用（降级本地）
+  const serverAvailableRef = useRef<boolean | null>(null);
 
-  // 恢复历史会话：登录用户从数据库读取，未登录用户从本地存储读取
+  const loadFromLocal = useCallback((): UIMessage[] | null => {
+    try {
+      const raw = localStorage.getItem(storageKey);
+      const parsed = raw ? JSON.parse(raw) : null;
+      return Array.isArray(parsed) ? (parsed as UIMessage[]) : null;
+    } catch {
+      // 本地数据损坏时静默忽略
+      return null;
+    }
+  }, [storageKey]);
+
+  const saveToLocal = useCallback(
+    (data: UIMessage[]) => {
+      try {
+        localStorage.setItem(storageKey, JSON.stringify(data));
+      } catch {
+        // 隐私模式下写入失败可忽略
+      }
+    },
+    [storageKey],
+  );
+
+  // 恢复历史会话：已登录且数据库可用时读数据库，否则读本地存储
   useEffect(() => {
     let cancelled = false;
     (async () => {
@@ -49,57 +76,61 @@ export function useChatSession(agent: ChatAgentMeta, username: string) {
             if (Array.isArray(data.messages) && !cancelled) {
               setMessages(data.messages);
             }
-            // 仅在成功读取到服务端状态后才允许回写，避免数据库抖动时误清空历史
-            serverLoadedRef.current = true;
+            serverAvailableRef.current = true;
+            if (!cancelled) setHydrated(true);
+            return;
           }
         } catch {
-          // 数据库暂不可用时保持 serverLoaded=false：不回写，也不覆盖已有历史
+          // 数据库不可用时继续走本地兜底
         }
+        // 数据库不可用：标记降级，并从本地恢复历史
+        serverAvailableRef.current = false;
+        const local = loadFromLocal();
+        if (local && !cancelled) setMessages(local);
       } else {
-        try {
-          const raw = localStorage.getItem(storageKey);
-          const parsed = raw ? JSON.parse(raw) : null;
-          if (Array.isArray(parsed) && !cancelled) {
-            setMessages(parsed as UIMessage[]);
-          }
-        } catch {
-          // 本地数据损坏时静默忽略
-        }
+        const local = loadFromLocal();
+        if (local && !cancelled) setMessages(local);
       }
       if (!cancelled) setHydrated(true);
     })();
     return () => {
       cancelled = true;
     };
-  }, [username, agent.id, storageKey, setMessages]);
+  }, [username, agent.id, loadFromLocal, setMessages]);
 
-  // 持久化会话（防抖）：登录存数据库，未登录存本地
+  // 持久化会话（防抖）：数据库可用时存数据库，否则存本地
   useEffect(() => {
     if (!hydrated) return;
 
-    if (!username) {
-      try {
-        localStorage.setItem(storageKey, JSON.stringify(messages));
-      } catch {
-        // 隐私模式下写入失败可忽略
-      }
+    // 未登录，或已确认数据库不可用 → 存本地
+    if (!username || serverAvailableRef.current === false) {
+      saveToLocal(messages);
       return;
     }
 
-    // 尚未从服务端确认状态时，不回写，避免覆盖已有历史
-    if (!serverLoadedRef.current) return;
+    // 数据库可用性尚未探测完成时不回写，避免覆盖已有历史
+    if (serverAvailableRef.current !== true) return;
 
     const timer = setTimeout(() => {
       fetch("/api/conversations", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ agentId: agent.id, messages: messagesRef.current }),
-      }).catch(() => {
-        // 保存失败不影响对话进行
-      });
+      })
+        .then((res) => {
+          if (!res.ok) {
+            // 保存失败视为数据库不可用，降级写入本地
+            serverAvailableRef.current = false;
+            saveToLocal(messagesRef.current);
+          }
+        })
+        .catch(() => {
+          serverAvailableRef.current = false;
+          saveToLocal(messagesRef.current);
+        });
     }, 1000);
     return () => clearTimeout(timer);
-  }, [messages, hydrated, username, agent.id, storageKey]);
+  }, [messages, hydrated, username, agent.id, saveToLocal]);
 
   const isBusy = status === "submitted" || status === "streaming";
 
@@ -115,21 +146,22 @@ export function useChatSession(agent: ChatAgentMeta, username: string) {
   const clear = useCallback(() => {
     stop();
     setMessages([]);
-    if (username) {
-      fetch("/api/conversations", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ agentId: agent.id, messages: [] }),
-      }).catch(() => {
-        // 忽略
-      });
-    } else {
+    // 数据库不可用或未登录时，只清理本地数据
+    if (!username || serverAvailableRef.current === false) {
       try {
         localStorage.removeItem(storageKey);
       } catch {
         // 忽略
       }
+      return;
     }
+    fetch("/api/conversations", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ agentId: agent.id, messages: [] }),
+    }).catch(() => {
+      // 忽略
+    });
   }, [stop, setMessages, storageKey, username, agent.id]);
 
   return { messages, status, error, isBusy, submit, clear, stop };
