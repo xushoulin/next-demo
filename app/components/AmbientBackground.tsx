@@ -49,7 +49,7 @@ function Mountains() {
   );
 }
 
-/** 角色主题背景：解梦为星空，风水为远山 */
+/** 角色主题背景：各模块统一为星空 */
 export default function AmbientBackground({ agent }: { agent: AgentMeta }) {
   const isStars = agent.theme.ambient === "stars";
   const particles = useParticles(isStars ? 70 : 28, isStars ? 20260910 : 31415926);

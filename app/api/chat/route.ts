@@ -39,7 +39,7 @@ export async function POST(req: Request) {
     return jsonError("未知的角色 ID。", 400);
   }
 
-  // 工具型角色（如八字排盘）不走大模型对话
+  // 所有角色均为对话型，统一走大模型对话
   if (!isChatAgentId(agentId)) {
     return jsonError("该模块不支持对话。", 400);
   }

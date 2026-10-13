@@ -1,20 +1,20 @@
 import type { AgentId, AgentMeta, ChatAgentId } from "../types";
-import { BAZI_AGENT } from "./bazi";
-import { DREAM_AGENT } from "./dream";
-import { FENGSHUI_AGENT } from "./fengshui";
+import { KNOWLEDGE_AGENT } from "./knowledge";
+import { STUDY_AGENT } from "./study";
+import { WRITING_AGENT } from "./writing";
 
 /**
  * 角色注册表（客户端安全）。
  * 新增角色的步骤：
- *   1. 在 ../types.ts 的 AgentId 中加入新 ID，并归入 chat / tool 之一
+ *   1. 在 ../types.ts 的 ChatAgentId 中加入新 ID
  *   2. 新建 metadata/<id>.ts 定义元数据
- *   3. 对话型角色需新建 ../prompts/<id>.ts 定义系统提示词
+ *   3. 新建 ../prompts/<id>.ts 定义系统提示词
  *   4. 在本数组与 ../prompts/index.ts 中完成注册
  */
 export const AGENTS: readonly AgentMeta[] = [
-  DREAM_AGENT,
-  FENGSHUI_AGENT,
-  BAZI_AGENT,
+  KNOWLEDGE_AGENT,
+  WRITING_AGENT,
+  STUDY_AGENT,
 ];
 
 /** 所有已注册的角色 ID */

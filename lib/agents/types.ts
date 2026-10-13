@@ -1,22 +1,17 @@
 /**
  * Agent（AI 角色）领域模型 —— 纯类型定义，不包含任何实现，可被前后端共享。
  *
- * 角色分两类，以 `kind` 作可辨识字段：
- * - chat：对话型角色（解梦、风水），渲染 ChatPanel；
- * - bazi：工具型角色（八字排盘），无对话，渲染专属面板。
+ * 当前仅保留对话型角色（kind: "chat"），渲染 ChatPanel。
  */
 
 /** 对话型角色 ID */
-export type ChatAgentId = "dream" | "fengshui";
-
-/** 工具型角色 ID */
-export type ToolAgentId = "bazi";
+export type ChatAgentId = "knowledge" | "writing" | "study";
 
 /** 已注册的 AI 角色 ID */
-export type AgentId = ChatAgentId | ToolAgentId;
+export type AgentId = ChatAgentId;
 
 /** 角色形态 */
-export type AgentKind = "chat" | "bazi";
+export type AgentKind = "chat";
 
 /** 背景装饰变体 */
 export type AmbientVariant = "stars" | "mountains";
@@ -99,14 +94,5 @@ export type ChatAgentMeta = AgentBase & {
   suggestions: Suggestion[];
 };
 
-/**
- * 工具型角色元数据（无对话）。
- * 注意：不得包含 systemPrompt 等需保密的内容。
- */
-export type BaziAgentMeta = AgentBase & {
-  id: ToolAgentId;
-  kind: "bazi";
-};
-
 /** 客户端可见的全部角色元数据 */
-export type AgentMeta = ChatAgentMeta | BaziAgentMeta;
+export type AgentMeta = ChatAgentMeta;

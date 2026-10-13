@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "隐私政策",
   description:
-    "玄机 AI 隐私政策：说明我们收集哪些信息、如何使用与保护、第三方广告（Google AdSense）如何处理数据，以及你对自己的数据拥有的权利。",
+    "砚知 AI 隐私政策：说明我们收集哪些信息、如何使用与保护、第三方广告（Google AdSense）如何处理数据，以及你对自己的数据拥有的权利。",
   alternates: { canonical: "/privacy" },
 };
 
@@ -15,11 +15,11 @@ export default function PrivacyPage() {
         <p className="text-sm font-medium text-amber-300/80">隐私政策</p>
         <h1 className="mt-2 text-3xl font-bold text-white">我们如何对待你的数据</h1>
         <p className="mt-4 text-sm text-slate-400">
-          最后更新：2026 年 10 月 13 日。本政策以简体中文为准，适用于玄机 AI 全部功能。
+          最后更新：2026 年 10 月 13 日。本政策以简体中文为准，适用于砚知 AI 全部功能。
         </p>
       </header>
 
-      <article className="prose-xuanji mt-10">
+      <article className="prose-article mt-10">
         <h2>一、我们收集的信息</h2>
         <p>视你的使用方式不同，我们可能处理以下几类信息：</p>
         <ul>
@@ -27,11 +27,8 @@ export default function PrivacyPage() {
             <strong>账户信息</strong>：当你使用用户名登录时，我们会保存你设置的用户名，用于识别你的账户与对话归属。
           </li>
           <li>
-            <strong>对话内容</strong>：你在「周公解梦」「风水先生」中的提问与助手回复会被保存——
+            <strong>对话内容</strong>：你在「知识问答」「写作助手」「学习方法」中的提问与助手回复会被保存——
             未登录时仅存于你的浏览器本地；登录后写入你所绑定的账户，以便跨设备查看。
-          </li>
-          <li>
-            <strong>排盘输入</strong>：使用「八字排盘」时输入的出生年月日时，仅用于生成当次排盘结果并保存记录。
           </li>
           <li>
             <strong>技术信息</strong>：为维持服务稳定运行，我们可能记录必要的访问日志（如时间、页面路径），
@@ -41,8 +38,8 @@ export default function PrivacyPage() {
 
         <h2>二、我们如何使用这些信息</h2>
         <ul>
-          <li>向你返回对应的解读、排盘结果与历史记录；</li>
-          <li>在登录状态下，跨设备同步你的对话与排盘记录；</li>
+          <li>向你返回对应的解答、修改建议与学习方案；</li>
+          <li>在登录状态下，跨设备同步你的对话与记录；</li>
           <li>排查故障、改进提示词与产品体验。</li>
         </ul>
         <p>
@@ -95,7 +92,7 @@ export default function PrivacyPage() {
 
         <h2>七、儿童隐私</h2>
         <p>
-          玄机 AI 的内容面向一般成年用户，不针对 13 岁以下儿童设计，也不会主动收集儿童的个人信息。
+          砚知 AI 的内容面向一般用户，不针对 13 岁以下儿童设计，也不会主动收集儿童的个人信息。
         </p>
 
         <h2>八、政策更新</h2>

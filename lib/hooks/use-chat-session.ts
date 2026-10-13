@@ -5,7 +5,7 @@ import { DefaultChatTransport, type UIMessage } from "ai";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { ChatAgentMeta } from "@/lib/agents";
 
-const STORAGE_PREFIX = "xuanji-ai-chat";
+const STORAGE_PREFIX = "yanzhi-ai-chat";
 
 /**
  * 单个 Agent 的会话 Hook。

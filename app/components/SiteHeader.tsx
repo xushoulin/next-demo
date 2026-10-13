@@ -27,7 +27,7 @@ export default function SiteHeader() {
           onClick={() => setOpen(false)}
         >
           <span aria-hidden="true">🌙</span>
-          <span>玄机 AI</span>
+          <span>砚知 AI</span>
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex">

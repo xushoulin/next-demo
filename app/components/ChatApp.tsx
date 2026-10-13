@@ -4,7 +4,6 @@ import { useCallback, useRef, useState } from "react";
 import { AGENTS, getAgentMeta, type AgentId } from "@/lib/agents";
 import AgentTabs from "./AgentTabs";
 import AmbientBackground from "./AmbientBackground";
-import BaziPanel from "./BaziPanel";
 import ChatPanel from "./ChatPanel";
 
 type ChatAppProps = {
@@ -88,24 +87,15 @@ export default function ChatApp({ username, onLogout }: ChatAppProps) {
       </header>
 
       <main className="relative z-10 min-h-0 flex-1">
-        {AGENTS.map((item) =>
-          item.kind === "bazi" ? (
-            <BaziPanel
-              key={item.id}
-              agent={item}
-              active={item.id === activeId}
-              username={username}
-            />
-          ) : (
-            <ChatPanel
-              key={item.id}
-              agent={item}
-              active={item.id === activeId}
-              registerClear={registerClear}
-              username={username}
-            />
-          ),
-        )}
+        {AGENTS.map((item) => (
+          <ChatPanel
+            key={item.id}
+            agent={item}
+            active={item.id === activeId}
+            registerClear={registerClear}
+            username={username}
+          />
+        ))}
       </main>
     </div>
   );

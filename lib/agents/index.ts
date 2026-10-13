@@ -8,11 +8,9 @@ export type {
   AgentMeta,
   AgentTheme,
   AmbientVariant,
-  BaziAgentMeta,
   ChatAgentId,
   ChatAgentMeta,
   Suggestion,
-  ToolAgentId,
 } from "./types";
 
 export {

@@ -28,18 +28,6 @@ const SCHEMA_STATEMENTS = [
      created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
    )`,
 
-  `CREATE TABLE IF NOT EXISTS bazi_records (
-     id         INT AUTO_INCREMENT PRIMARY KEY,
-     user_id    INT NOT NULL,
-     year       INT NOT NULL,
-     month      INT NOT NULL,
-     day        INT NOT NULL,
-     hour       INT NOT NULL,
-     chart_json JSON NOT NULL,
-     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-   )`,
-
   `CREATE TABLE IF NOT EXISTS conversations (
      user_id       INT NOT NULL,
      agent_id      VARCHAR(64) NOT NULL,

@@ -52,13 +52,13 @@ body {
 }
 
 /* ===== 内容页排版（落地页 / 指南 / 关于 / 联系 / 隐私） ===== */
-.prose-xuanji {
+.prose-article {
   color: rgb(203 213 225); /* slate-300 */
   font-size: 1.0625rem;
   line-height: 1.85;
 }
 
-.prose-xuanji h2 {
+.prose-article h2 {
   margin-top: 2.25rem;
   margin-bottom: 0.9rem;
   font-size: 1.4rem;
@@ -67,7 +67,7 @@ body {
   color: rgb(254 243 199); /* amber-100 */
 }
 
-.prose-xuanji h3 {
+.prose-article h3 {
   margin-top: 1.5rem;
   margin-bottom: 0.6rem;
   font-size: 1.15rem;
@@ -75,47 +75,47 @@ body {
   color: rgb(253 230 138); /* amber-200 */
 }
 
-.prose-xuanji p {
+.prose-article p {
   margin-top: 0.9rem;
   margin-bottom: 0.9rem;
 }
 
-.prose-xuanji a {
+.prose-article a {
   color: rgb(196 181 253); /* violet-300 */
   text-decoration: underline;
   text-underline-offset: 3px;
 }
 
-.prose-xuanji strong {
+.prose-article strong {
   color: rgb(253 230 138); /* amber-200 */
   font-weight: 600;
 }
 
-.prose-xuanji ul,
-.prose-xuanji ol {
+.prose-article ul,
+.prose-article ol {
   margin-top: 0.9rem;
   margin-bottom: 0.9rem;
   padding-left: 1.4rem;
 }
 
-.prose-xuanji ul {
+.prose-article ul {
   list-style: disc;
 }
 
-.prose-xuanji ol {
+.prose-article ol {
   list-style: decimal;
 }
 
-.prose-xuanji li {
+.prose-article li {
   margin-top: 0.45rem;
   margin-bottom: 0.45rem;
 }
 
-.prose-xuanji li::marker {
+.prose-article li::marker {
   color: rgb(251 191 36); /* amber-400 */
 }
 
-.prose-xuanji blockquote {
+.prose-article blockquote {
   margin: 1.25rem 0;
   border-left: 3px solid rgb(167 139 250); /* violet-400 */
   padding: 0.5rem 0 0.5rem 1.1rem;
@@ -124,7 +124,7 @@ body {
   border-radius: 0 0.5rem 0.5rem 0;
 }
 
-.prose-xuanji code {
+.prose-article code {
   border-radius: 0.35rem;
   background: rgba(255, 255, 255, 0.08);
   padding: 0.1rem 0.4rem;

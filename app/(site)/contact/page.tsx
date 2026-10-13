@@ -4,7 +4,7 @@ import ContactForm from "../../components/ContactForm";
 export const metadata: Metadata = {
   title: "联系我们",
   description:
-    "对玄机 AI 有功能建议、使用疑问或内容反馈？通过邮箱或页面表单与我们联系，我们会认真阅读每一条消息。",
+    "对砚知 AI 有功能建议、使用疑问或内容反馈？通过邮箱或页面表单与我们联系，我们会认真阅读每一条消息。",
   alternates: { canonical: "/contact" },
 };
 
@@ -15,7 +15,7 @@ export default function ContactPage() {
         <p className="text-sm font-medium text-amber-300/80">联系我们</p>
         <h1 className="mt-2 text-3xl font-bold text-white">我们很想听听你的想法</h1>
         <p className="mt-4 text-lg leading-relaxed text-slate-300">
-          无论是功能建议、使用中遇到的问题，还是对某次解读的不同看法，都欢迎告诉我们。
+          无论是功能建议、使用中遇到的问题，还是对内容的任何想法，都欢迎告诉我们。
           这是个人项目，回复可能不会即时，但每一条消息都会被认真看到。
         </p>
       </header>
@@ -27,10 +27,10 @@ export default function ContactPage() {
             如果你更习惯用邮件，也可以直接发送到下面的地址：
           </p>
           <a
-            href="mailto:xuanji-ai-support@example.com"
+            href="mailto:support@yourdomain.com"
             className="mt-3 inline-block rounded-lg border border-white/15 bg-white/5 px-4 py-2 text-sm text-amber-100"
           >
-            xuanji-ai-support@example.com
+            support@yourdomain.com
           </a>
 
           <h2 className="mt-8 text-lg font-semibold text-amber-100">响应时间</h2>

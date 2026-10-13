@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-const CONTACT_EMAIL = "xuanji-ai-support@example.com";
+const CONTACT_EMAIL = "support@yourdomain.com";
 
 export default function ContactForm() {
   const [name, setName] = useState("");
@@ -13,7 +13,7 @@ export default function ContactForm() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const subject = encodeURIComponent(
-      `玄机 AI 用户反馈 - ${name || "匿名用户"}`,
+      `砚知 AI 用户反馈 - ${name || "匿名用户"}`,
     );
     const body = encodeURIComponent(
       `姓名：${name}\n邮箱：${email}\n\n${message}`,

@@ -82,7 +82,7 @@ export default async function GuidePage({
     <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
       <nav className="text-sm text-slate-500">
         <Link href="/guides" className="hover:text-amber-100">
-          使用指南
+          知识专栏
         </Link>
         <span className="mx-2">/</span>
         <span className="text-slate-400">{guide.category}</span>
@@ -104,7 +104,7 @@ export default async function GuidePage({
         </p>
       </header>
 
-      <article className="prose-xuanji mt-8">
+      <article className="prose-article mt-8">
         {guide.sections.map((section) => (
           <section key={section.heading}>
             <h2>{section.heading}</h2>
@@ -117,10 +117,10 @@ export default async function GuidePage({
 
       <div className="mt-12 rounded-2xl border border-white/10 bg-white/5 p-6 text-center">
         <h3 className="text-lg font-semibold text-amber-100">
-          想亲手试试解读？
+          想把知识用起来？
         </h3>
         <p className="mx-auto mt-2 max-w-md text-sm text-slate-300">
-          把你的梦境或户型讲给玄机 AI 听，它会给出结构化的解读与可落地的建议。
+          把你的疑问或草稿讲给砚知 AI 听，它会给出结构化的解答与可落地的建议。
         </p>
         <Link
           href="/chat"
