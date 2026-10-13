@@ -60,6 +60,7 @@ export default function LoginScreen({ onLogin }: LoginScreenProps) {
 
       <form
         onSubmit={handleSubmit}
+        data-testid="login-form"
         className="relative z-10 w-full max-w-sm rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-md sm:p-8"
       >
         <div
@@ -81,6 +82,7 @@ export default function LoginScreen({ onLogin }: LoginScreenProps) {
         </label>
         <input
           id="login-username"
+          data-testid="login-username"
           autoFocus
           value={username}
           onChange={(event) => setUsername(event.target.value)}
@@ -90,13 +92,18 @@ export default function LoginScreen({ onLogin }: LoginScreenProps) {
         />
 
         {error && (
-          <p className="mt-2 text-xs text-rose-300" role="alert">
+          <p
+            className="mt-2 text-xs text-rose-300"
+            role="alert"
+            data-testid="login-error"
+          >
             {error}
           </p>
         )}
 
         <button
           type="submit"
+          data-testid="login-submit"
           disabled={loading}
           className="mt-5 w-full rounded-xl bg-gradient-to-br from-amber-500 to-purple-700 px-4 py-2.5 text-sm font-medium text-white shadow-lg shadow-violet-950/40 transition hover:from-amber-400 hover:to-purple-600 disabled:cursor-not-allowed disabled:opacity-50"
         >
