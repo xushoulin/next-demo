@@ -1,7 +1,7 @@
 import type { AgentId, AgentMeta, ChatAgentId } from "../types";
-import { KNOWLEDGE_AGENT } from "./knowledge";
-import { STUDY_AGENT } from "./study";
-import { WRITING_AGENT } from "./writing";
+import { CONCIERGE_AGENT } from "./concierge";
+import { BOOKING_AGENT } from "./booking";
+import { MEMBER_AGENT } from "./member";
 
 /**
  * 角色注册表（客户端安全）。
@@ -12,9 +12,9 @@ import { WRITING_AGENT } from "./writing";
  *   4. 在本数组与 ../prompts/index.ts 中完成注册
  */
 export const AGENTS: readonly AgentMeta[] = [
-  KNOWLEDGE_AGENT,
-  WRITING_AGENT,
-  STUDY_AGENT,
+  CONCIERGE_AGENT,
+  BOOKING_AGENT,
+  MEMBER_AGENT,
 ];
 
 /** 所有已注册的角色 ID */

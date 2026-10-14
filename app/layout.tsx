@@ -4,37 +4,35 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://next-demo-nu-two.vercel.app"),
   title: {
-    default: "砚知 AI · 通识学习与写作助手",
-    template: "%s · 砚知 AI",
+    default: "尚美智宿 · 酒店智能服务助手",
+    template: "%s · 尚美智宿",
   },
   description:
-    "砚知 AI 是一个通识学习与写作辅助助手，提供知识问答、写作助手与学习方法三大模块，帮助你更好地学习、理解与表达。所有内容仅供学习参考。",
+    "尚美智宿是酒店智能服务助手，提供智能礼宾、预订指引与会员服务三大模块，帮助你更轻松地完成从预订到入住的每一步。回答内容仅供参考，价格与房态以官方渠道为准。",
   keywords: [
-    "砚知AI",
-    "AI学习",
-    "知识问答",
-    "学习方法",
-    "写作助手",
-    "通识科普",
-    "AI写作",
-    "主动回忆",
-    "费曼技巧",
+    "尚美智宿",
+    "酒店AI助手",
+    "智能礼宾",
+    "预订助手",
+    "会员服务",
+    "房型推荐",
+    "入住指南",
   ],
-  authors: [{ name: "砚知 AI" }],
-  category: "education",
+  authors: [{ name: "尚美智宿" }],
+  category: "travel",
   openGraph: {
     type: "website",
     locale: "zh_CN",
-    siteName: "砚知 AI",
-    title: "砚知 AI · 通识学习与写作助手",
+    siteName: "尚美智宿",
+    title: "尚美智宿 · 酒店智能服务助手",
     description:
-      "通识学习与写作辅助助手：知识问答、写作助手与学习方法，帮你更好地学习、理解与表达。",
+      "酒店智能服务助手：智能礼宾、预订指引与会员服务，让每一次入住更省心。",
   },
   twitter: {
     card: "summary_large_image",
-    title: "砚知 AI · 通识学习与写作助手",
+    title: "尚美智宿 · 酒店智能服务助手",
     description:
-      "通识学习与写作辅助助手：知识问答、写作助手与学习方法，帮你更好地学习、理解与表达。",
+      "酒店智能服务助手：智能礼宾、预订指引与会员服务，让每一次入住更省心。",
   },
   robots: {
     index: true,
@@ -58,13 +56,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="zh-CN">
-      <head>
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2622415797490761"
-          crossOrigin="anonymous"
-        ></script>
-      </head>
       <body className="min-h-screen antialiased">{children}</body>
     </html>
   );

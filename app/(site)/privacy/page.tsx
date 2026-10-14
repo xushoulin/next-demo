@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "隐私政策",
   description:
-    "砚知 AI 隐私政策：说明我们收集哪些信息、如何使用与保护、第三方广告（Google AdSense）如何处理数据，以及你对自己的数据拥有的权利。",
+    "尚美智宿隐私政策：说明我们收集哪些信息、如何使用与保护，以及你对自己的数据拥有的权利。",
   alternates: { canonical: "/privacy" },
 };
 
@@ -15,7 +15,7 @@ export default function PrivacyPage() {
         <p className="text-sm font-medium text-amber-300/80">隐私政策</p>
         <h1 className="mt-2 text-3xl font-bold text-white">我们如何对待你的数据</h1>
         <p className="mt-4 text-sm text-slate-400">
-          最后更新：2026 年 10 月 13 日。本政策以简体中文为准，适用于砚知 AI 全部功能。
+          最后更新：2026 年 10 月 14 日。本政策以简体中文为准，适用于尚美智宿全部功能。
         </p>
       </header>
 
@@ -24,11 +24,15 @@ export default function PrivacyPage() {
         <p>视你的使用方式不同，我们可能处理以下几类信息：</p>
         <ul>
           <li>
-            <strong>账户信息</strong>：当你使用用户名登录时，我们会保存你设置的用户名，用于识别你的账户与对话归属。
+            <strong>账户信息</strong>：当你使用用户名登录时，我们会保存你设置的用户名，用于识别你的账户、对话与预订归属。
           </li>
           <li>
-            <strong>对话内容</strong>：你在「知识问答」「写作助手」「学习方法」中的提问与助手回复会被保存——
+            <strong>对话内容</strong>：你在「智能礼宾」「智能预订助手」「会员服务助手」中的提问与助手回复会被保存——
             未登录时仅存于你的浏览器本地；登录后写入你所绑定的账户，以便跨设备查看。
+          </li>
+          <li>
+            <strong>预订与会员信息</strong>：当你使用预订功能时，我们会处理入住人姓名、联系电话、入住与离店日期等信息，
+            仅用于创建与管理你的预订；会员档案（等级、积分）仅用于会员服务展示。
           </li>
           <li>
             <strong>技术信息</strong>：为维持服务稳定运行，我们可能记录必要的访问日志（如时间、页面路径），
@@ -38,37 +42,18 @@ export default function PrivacyPage() {
 
         <h2>二、我们如何使用这些信息</h2>
         <ul>
-          <li>向你返回对应的解答、修改建议与学习方案；</li>
-          <li>在登录状态下，跨设备同步你的对话与记录；</li>
+          <li>向你返回对应的礼宾解答、房型推荐与办理指引；</li>
+          <li>在登录状态下，跨设备同步你的对话与预订记录；</li>
           <li>排查故障、改进提示词与产品体验。</li>
         </ul>
         <p>
           我们<strong>不会</strong>将你的聊天内容用于广告定向投放，也<strong>不会</strong>出售你的个人信息。
         </p>
 
-        <h2>三、第三方服务与广告</h2>
+        <h2>三、第三方服务</h2>
         <p>
-          本站可能通过 Google AdSense（及其合作伙伴）展示广告。AdSense 会使用 Cookie
-          或类似技术，根据你的浏览行为在第三方网站上提供个性化广告。相关数据处理遵循
-          Google 的《广告隐私与条款》。
-        </p>
-        <p>你可以通过以下方式管理广告偏好：</p>
-        <ul>
-          <li>
-            访问 Google 广告设置（<a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer">ads.google.com</a>）
-            关闭个性化广告；
-          </li>
-          <li>
-            通过{' '}
-            <a href="https://adssettings.google.com/" target="_blank" rel="noopener noreferrer">
-              Google 广告设置中心
-            </a>{' '}
-            查看与管理你的广告数据。
-          </li>
-        </ul>
-        <p>
-          除必要的模型调用与广告服务外，我们不会主动引入其他会收集你个人信息的第三方脚本。
-          大模型调用发生在服务端，提示词与密钥不会进入前端。
+          本站的智能回答由大模型服务在服务端生成，提示词与密钥不会进入前端；
+          我们不会主动引入其他会收集你个人信息的第三方脚本。
         </p>
 
         <h2>四、Cookie 与本地存储</h2>
@@ -86,13 +71,13 @@ export default function PrivacyPage() {
         <h2>六、你的权利</h2>
         <ul>
           <li>你随时可以退出登录，并清除浏览器本地存储中的对话；</li>
-          <li>如需删除账户相关数据，可通过<Link href="/contact">联系我们</Link>提出请求；</li>
-          <li>你可以随时通过浏览器或上述广告设置，撤回对个性化广告的同意。</li>
+          <li>如需删除账户、预订或会员相关数据，可通过<Link href="/contact">联系我们</Link>提出请求；</li>
+          <li>涉及预订的取消与退款，请通过官方渠道办理。</li>
         </ul>
 
         <h2>七、儿童隐私</h2>
         <p>
-          砚知 AI 的内容面向一般用户，不针对 13 岁以下儿童设计，也不会主动收集儿童的个人信息。
+          尚美智宿的内容面向一般用户，不针对 13 岁以下儿童设计，也不会主动收集儿童的个人信息。
         </p>
 
         <h2>八、政策更新</h2>

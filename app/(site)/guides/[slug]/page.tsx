@@ -82,7 +82,7 @@ export default async function GuidePage({
     <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
       <nav className="text-sm text-slate-500">
         <Link href="/guides" className="hover:text-amber-100">
-          知识专栏
+          服务指南
         </Link>
         <span className="mx-2">/</span>
         <span className="text-slate-400">{guide.category}</span>
@@ -120,7 +120,7 @@ export default async function GuidePage({
           想把知识用起来？
         </h3>
         <p className="mx-auto mt-2 max-w-md text-sm text-slate-300">
-          把你的疑问或草稿讲给砚知 AI 听，它会给出结构化的解答与可落地的建议。
+          把你的疑问或草稿讲给尚美智宿 听，它会给出结构化的解答与可落地的建议。
         </p>
         <Link
           href="/chat"

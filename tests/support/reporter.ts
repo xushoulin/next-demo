@@ -6,7 +6,7 @@ import type {
   Reporter,
   TestCase,
   TestResult,
-} from "@playwright/test";
+} from "@playwright/test/reporter";
 
 type Row = {
   title: string;
@@ -45,7 +45,7 @@ function suggestFix(error: string, title: string): string {
     return "服务端异常：查看 `npm run dev` 终端日志；若为 DASHSCOPE 相关，确认 .env.local 中的 DASHSCOPE_API_KEY 是否有效。";
   }
   if (text.includes("数据库") || text.includes("保存失败")) {
-    return "MySQL 不可用：确认本地 MySQL 已启动、.env.local 的 DATABASE_URL 正确；数据库不可用时应用会降级本地模式，持久化类断言会失败。";
+    return "PostgreSQL（Neon）不可用：确认 .env.local 的 DATABASE_URL 正确、Neon 项目在线；数据库不可用时应用会降级本地模式，持久化类断言会失败。";
   }
   return "查看附件中的失败截图与「失败现场」JSON（含 URL、控制台错误、页面文本）定位具体步骤。";
 }
@@ -87,7 +87,7 @@ class MarkdownReporter implements Reporter {
     const seconds = ((Date.now() - this.startedAt) / 1000).toFixed(1);
 
     const lines: string[] = [];
-    lines.push("# 砚知 AI 浏览器自动化测试报告");
+    lines.push("# 尚美智宿 浏览器自动化测试报告");
     lines.push("");
     lines.push(`- 运行时间：${new Date().toLocaleString("zh-CN", { hour12: false })}`);
     lines.push(`- 总耗时：${seconds}s`);

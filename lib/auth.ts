@@ -6,7 +6,7 @@ import { createHmac } from "node:crypto";
  * 为避免 Cookie 被随意篡改冒充，值以 HMAC 签名。
  */
 
-export const AUTH_COOKIE = "yanzhi_user";
+export const AUTH_COOKIE = "shangmei_user";
 
 const SECRET = process.env.AUTH_SECRET ?? "dev-insecure-secret-change-me";
 

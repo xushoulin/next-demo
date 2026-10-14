@@ -13,7 +13,7 @@ export default function ContactForm() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const subject = encodeURIComponent(
-      `砚知 AI 用户反馈 - ${name || "匿名用户"}`,
+      `尚美智宿 AI 助手用户反馈 - ${name || "匿名用户"}`,
     );
     const body = encodeURIComponent(
       `姓名：${name}\n邮箱：${email}\n\n${message}`,

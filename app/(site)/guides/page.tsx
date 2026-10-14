@@ -5,7 +5,7 @@ import { GUIDES } from "@/lib/content/guides";
 export const metadata: Metadata = {
   title: "知识专栏",
   description:
-    "砚知 AI 知识专栏：从学习方法入门、主动回忆技巧，到通识科普与写作方法，帮助你更好地学习、理解与表达。",
+    "尚美智宿 知识专栏：从房型选择、入住办理到会员积分，帮助你把住留的每个环节安排得更妥帖。",
   alternates: { canonical: "/guides" },
 };
 
@@ -14,10 +14,10 @@ export default function GuidesPage() {
     <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6">
       <header>
         <p className="text-sm font-medium text-amber-300/80">使用指南</p>
-        <h1 className="mt-2 text-3xl font-bold text-white">把工具用得更得心应手</h1>
+        <h1 className="mt-2 text-3xl font-bold text-white">把住留安排得更妥帖</h1>
           <p className="mt-4 text-lg leading-relaxed text-slate-300">
             这里收录了一些入门级的参考文章，帮你建立学习方法、通识科普与写作的基础框架，
-            也分享一些和砚知 AI 对话的小技巧。内容持续更新中。
+            也分享一些和尚美智宿 对话的小技巧。内容持续更新中。
           </p>
       </header>
 
