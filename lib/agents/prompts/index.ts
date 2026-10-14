@@ -1,7 +1,7 @@
 import type { ChatAgentId } from "../types";
-import { CONCIERGE_SYSTEM_PROMPT } from "./concierge";
-import { BOOKING_SYSTEM_PROMPT } from "./booking";
-import { MEMBER_SYSTEM_PROMPT } from "./member";
+import { KNOWLEDGE_SYSTEM_PROMPT } from "./knowledge";
+import { STUDY_SYSTEM_PROMPT } from "./study";
+import { WRITING_SYSTEM_PROMPT } from "./writing";
 
 /**
  * 角色运行时配置（服务端专用，含系统提示词）。
@@ -9,25 +9,25 @@ import { MEMBER_SYSTEM_PROMPT } from "./member";
  */
 export type AgentRuntime = {
   systemPrompt: string;
-  /** 采样温度：规则与政策类偏低求稳，周边推荐类适中求灵活 */
+  /** 采样温度：知识类偏低以求准确，创作类偏高以求灵活 */
   temperature: number;
 };
 
 /** 仅对话型角色需要运行时提示词 */
 export const AGENT_RUNTIME: Record<ChatAgentId, AgentRuntime> = {
-  // 智能礼宾：服务信息求准，周边推荐留一点灵活度
-  concierge: {
-    systemPrompt: CONCIERGE_SYSTEM_PROMPT,
+  // 知识问答：温度偏低，保证准确、稳定
+  knowledge: {
+    systemPrompt: KNOWLEDGE_SYSTEM_PROMPT,
     temperature: 0.5,
   },
-  // 智能预订助手：涉及价格与规则，温度最低求稳
-  booking: {
-    systemPrompt: BOOKING_SYSTEM_PROMPT,
-    temperature: 0.3,
+  // 写作助手：温度适中，兼顾灵活与可控
+  writing: {
+    systemPrompt: WRITING_SYSTEM_PROMPT,
+    temperature: 0.6,
   },
-  // 会员服务助手：权益解答求稳，办理指引适度灵活
-  member: {
-    systemPrompt: MEMBER_SYSTEM_PROMPT,
-    temperature: 0.5,
+  // 学习方法：温度略高，鼓励多种思路
+  study: {
+    systemPrompt: STUDY_SYSTEM_PROMPT,
+    temperature: 0.65,
   },
 };

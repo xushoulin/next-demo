@@ -5,7 +5,7 @@
  */
 
 /** 对话型角色 ID */
-export type ChatAgentId = "concierge" | "booking" | "member";
+export type ChatAgentId = "knowledge" | "writing" | "study";
 
 /** 已注册的 AI 角色 ID */
 export type AgentId = ChatAgentId;

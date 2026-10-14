@@ -4,7 +4,7 @@ import ContactForm from "../../components/ContactForm";
 export const metadata: Metadata = {
   title: "联系我们",
   description:
-    "对尚美智宿 有功能建议、使用疑问或内容反馈？通过邮箱或页面表单与我们联系，我们会认真阅读每一条消息。",
+    "对砚知 AI 有功能建议、使用疑问或内容反馈？通过邮箱或页面表单与我们联系，我们会认真阅读每一条消息。",
   alternates: { canonical: "/contact" },
 };
 
@@ -16,7 +16,7 @@ export default function ContactPage() {
         <h1 className="mt-2 text-3xl font-bold text-white">我们很想听听你的想法</h1>
         <p className="mt-4 text-lg leading-relaxed text-slate-300">
           无论是功能建议、使用中遇到的问题，还是对内容的任何想法，都欢迎告诉我们。
-          回复可能不会即时，但每一条消息都会被认真看到。
+          这是个人项目，回复可能不会即时，但每一条消息都会被认真看到。
         </p>
       </header>
 

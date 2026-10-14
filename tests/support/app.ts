@@ -4,13 +4,13 @@ import { test as base, expect, type Locator, type Page, type TestInfo } from "@p
 export const TEST_USER = process.env.TEST_USERNAME ?? "autotest";
 
 /** 三个对话角色，与 lib/agents 注册顺序一致 */
-export const AGENT_IDS = ["concierge", "booking", "member"] as const;
+export const AGENT_IDS = ["knowledge", "writing", "study"] as const;
 export type AgentId = (typeof AGENT_IDS)[number];
 
 export const AGENT_NAMES: Record<AgentId, string> = {
-  concierge: "智能礼宾",
-  booking: "智能预订助手",
-  member: "会员服务助手",
+  knowledge: "AI 知识问答",
+  writing: "AI 写作助手",
+  study: "AI 学习方法",
 };
 
 /**
@@ -178,8 +178,7 @@ export const test = base.extend<{ app: AppPage }>({
 
     await use(new AppPage(page));
 
-    const status = testInfo.status;
-    if (status && status !== "passed" && status !== "skipped") {
+    if (testInfo.status !== "passed" && !testInfo.status.startsWith("skip")) {
       await attachFailureContext(page, testInfo, consoleErrors);
     }
   },

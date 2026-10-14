@@ -6,7 +6,7 @@ import { useState } from "react";
 
 const NAV_LINKS = [
   { href: "/", label: "首页" },
-  { href: "/guides", label: "服务指南" },
+  { href: "/guides", label: "使用指南" },
   { href: "/about", label: "关于我们" },
   { href: "/contact", label: "联系我们" },
 ];
@@ -26,8 +26,8 @@ export default function SiteHeader() {
           className="flex items-center gap-2 text-base font-semibold text-amber-100"
           onClick={() => setOpen(false)}
         >
-          <span aria-hidden="true">🏨</span>
-          <span>尚美智宿</span>
+          <span aria-hidden="true">🌙</span>
+          <span>砚知 AI</span>
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex">

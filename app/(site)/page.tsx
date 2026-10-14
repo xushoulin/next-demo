@@ -4,30 +4,30 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "首页",
   description:
-    "尚美智宿是酒店智能服务助手，提供智能礼宾、预订指引与会员服务三大模块。无需注册即可体验，回答内容仅供参考，价格与房态以官方渠道为准。",
+    "砚知 AI 是一个通识学习与写作辅助助手，提供知识问答、写作助手与学习方法三大模块。无需注册即可体验，所有内容仅供学习参考。",
   alternates: { canonical: "/" },
 };
 
 const MODULES = [
   {
-    icon: "🛎️",
-    name: "智能礼宾",
-    desc: "早餐时段、健身房开放时间、行李寄存、周边餐厅与出行指引，一句话提问，拿到可直接行动的答案。",
-    tags: ["设施服务", "周边推荐", "政策解答"],
+    icon: "📚",
+    name: "AI 知识问答",
+    desc: "把科学、历史、文化或生活常识里的疑问讲清楚，助手会用通俗、可靠的方式解释原理，并注明知识的边界与适用条件。",
+    tags: ["通俗讲解", "有据可依", "标注边界"],
     href: "/chat",
   },
   {
-    icon: "🛏️",
-    name: "智能预订助手",
-    desc: "说出入住人数、日期与偏好，帮你推荐合适房型、讲清价格构成与预订流程，并列出入住办理清单。",
-    tags: ["房型推荐", "价格说明", "入住指引"],
+    icon: "✍️",
+    name: "AI 写作助手",
+    desc: "贴入你的草稿，告诉想要的效果，助手帮你润色表达、扩写内容、调整结构或换一种语气，让文字更清楚、更有力。",
+    tags: ["润色", "扩写改写", "结构化"],
     href: "/chat",
   },
   {
-    icon: "💳",
-    name: "会员服务助手",
-    desc: "会员权益、积分累计与使用、房型升级申请、发票与售后流程，一次问清，按步骤办理。",
-    tags: ["权益解答", "积分规则", "办理指引"],
+    icon: "🧠",
+    name: "AI 学习方法",
+    desc: "想做读书笔记、制定学习计划或梳理思维方法，描述你的目标与现状，助手给出具体、可执行的建议，而不是空泛口号。",
+    tags: ["读书笔记", "学习计划", "思维方法"],
     href: "/chat",
   },
 ];
@@ -36,32 +36,32 @@ const STEPS = [
   {
     step: "01",
     title: "选择一个模块",
-    text: "进入对话页面后，在顶部 Tab 中切换「智能礼宾」「智能预订助手」或「会员服务助手」，每个模块都有独立的对话上下文。",
+    text: "进入对话页面后，在顶部 Tab 中切换「知识问答」「写作助手」或「学习方法」，每个模块都有独立的对话上下文。",
   },
   {
     step: "02",
     title: "描述你的需求",
-    text: "尽量写清细节：入住日期与人数、想用的设施、或要办理的会员业务。细节越具体，回答越贴合你的行程。",
+    text: "尽量写清细节：想弄懂什么问题、希望文字达成什么效果，或你当前的学习目标与阻碍。细节越具体，回答越贴合。",
   },
   {
     step: "03",
-    title: "按指引行动",
-    text: "助手会以清晰的小节呈现结果，并在末尾给出办理路径与注意事项；涉及价格与房态，请以官方渠道确认为准。",
+    title: "获取结构化结果",
+    text: "助手会以清晰的小节呈现结果，并在末尾给出可执行的建议或行动清单，你可以继续追问、让结论更具体。",
   },
 ];
 
 const FAQS = [
   {
     q: "需要付费或注册才能用吗？",
-    a: "不需要。你可以直接进入对话开始咨询。登录（免密码用户名登录）后，对话会保存到账户，方便跨设备查看与继续。",
+    a: "不需要。你可以直接进入对话开始体验。注册（免密码用户名登录）后，对话会保存到账户，方便跨设备查看与继续。",
   },
   {
-    q: "可以直接帮我下单预订吗？",
-    a: "助手会讲清房型、价格构成与预订流程，但不代替你执行下单与支付；真实预订请通过官方渠道或前台完成。",
+    q: "回答的内容准确吗？能当真吗？",
+    a: "知识类回答基于公开常识整理，力求准确，但不保证绝对无误；涉及医疗、法律、金融等专业领域，请以权威资料或专业人士为准。",
   },
   {
-    q: "回答的价格和房态是实时的吗？",
-    a: "不是。回答中的价格与房态信息仅供参考，实际以预订系统实时展示与酒店前台确认为准。",
+    q: "可以用它代写作业或考试答案吗？",
+    a: "不建议，也不鼓励。写作助手仅作辅助润色与思路梳理，最终内容应由你自己完成并对原创性负责。详见《知识专栏》中的相关文章。",
   },
   {
     q: "我的聊天内容会被泄露吗？",
@@ -74,33 +74,33 @@ export default function HomePage() {
     <>
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(180,83,9,0.45),_transparent_55%),radial-gradient(ellipse_at_bottom,_rgba(30,58,138,0.25),_transparent_55%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(76,29,149,0.45),_transparent_55%),radial-gradient(ellipse_at_bottom,_rgba(16,185,129,0.18),_transparent_55%)]" />
         <div className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
           <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-amber-100">
-            <span aria-hidden="true">🏨</span> 智能礼宾 × 预订指引 × 会员服务
+            <span aria-hidden="true">📖</span> 通识学习 × 写作辅助
           </span>
           <h1 className="mt-6 max-w-3xl text-4xl font-bold leading-tight text-white sm:text-5xl">
-            从预订到退房，
-            <span className="mt-2 block bg-gradient-to-r from-amber-200 to-orange-300 bg-clip-text text-transparent">
-              都有人帮你把细节想好
+            把好奇心，变成
+            <span className="mt-2 block bg-gradient-to-r from-amber-200 to-violet-300 bg-clip-text text-transparent">
+              真正弄懂的东西
             </span>
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-300">
-            尚美智宿把酒店服务信息、预订指引与会员权益放进同一个对话框，
-            一次提问就能拿到可直接行动的答案，让每一次入住更省心。
+            砚知 AI 把可靠的科普讲解、务实的写作辅助与经过验证的学习方法放在一起，
+            用一次自然对话，陪你厘清知识、打磨文字、建立属于自己的学习习惯。
           </p>
           <div className="mt-9 flex flex-wrap gap-4">
             <Link
               href="/chat"
-              className="rounded-xl bg-gradient-to-r from-amber-600 to-orange-600 px-6 py-3 text-sm font-medium text-white shadow-sm transition-opacity hover:opacity-90"
+              className="rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 px-6 py-3 text-sm font-medium text-white shadow-sm transition-opacity hover:opacity-90"
             >
-              免费开始咨询 →
+              免费开始对话 →
             </Link>
             <Link
               href="/guides"
               className="rounded-xl border border-white/15 bg-white/5 px-6 py-3 text-sm font-medium text-slate-200 transition-colors hover:bg-white/10"
             >
-              浏览服务指南
+              浏览知识专栏
             </Link>
           </div>
         </div>
@@ -110,10 +110,10 @@ export default function HomePage() {
       <section className="border-t border-white/10 bg-slate-900/40">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
           <h2 className="text-center text-2xl font-bold text-amber-100">
-            三大模块，覆盖住前住中住后
+            三大模块，各有侧重
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-center text-slate-400">
-            无论是挑选房型、安排行程，还是用足会员权益，都能在这里找到一个对话的入口。
+            无论是脑子里的一个疑问、桌上的一篇草稿，还是想养成的学习习惯，都能在这里找到一个对话的入口。
           </p>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {MODULES.map((m) => (
@@ -142,7 +142,7 @@ export default function HomePage() {
                 </div>
                 <Link
                   href={m.href}
-                  className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-amber-300 hover:text-amber-200"
+                  className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-violet-300 hover:text-violet-200"
                 >
                   去体验 {m.name} →
                 </Link>
@@ -210,14 +210,14 @@ export default function HomePage() {
       <section className="border-t border-white/10">
         <div className="mx-auto max-w-4xl px-4 py-16 text-center sm:px-6">
           <h2 className="text-2xl font-bold text-white sm:text-3xl">
-            一个需求，或一次行程，都值得被安排妥帖
+            一个好问题，或一段想改好的文字，都值得认真对待
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-slate-400">
-            打开对话，把你的入住需求交给尚美智宿，让它帮你把细节理成一份可以照做的清单。
+            打开对话，把模糊的疑问或草稿交给砚知 AI，让它帮你梳理成可以理解的答案。
           </p>
           <Link
             href="/chat"
-            className="mt-8 inline-flex rounded-xl bg-gradient-to-r from-amber-600 to-orange-600 px-7 py-3 text-sm font-medium text-white shadow-sm transition-opacity hover:opacity-90"
+            className="mt-8 inline-flex rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 px-7 py-3 text-sm font-medium text-white shadow-sm transition-opacity hover:opacity-90"
           >
             立即开始 →
           </Link>

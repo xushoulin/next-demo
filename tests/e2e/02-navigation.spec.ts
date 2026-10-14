@@ -4,7 +4,7 @@ import { expect, test } from "../support/app";
  * 导航与跳转
  *
  * 业务事实（来自 SiteHeader / SiteFooter / not-found 源码）：
- * - 顶部导航：/（首页）、/guides（服务指南）、/about（关于我们）、/contact（联系我们）
+ * - 顶部导航：/（首页）、/guides（使用指南）、/about（关于我们）、/contact（联系我们）
  * - CTA「开始使用」跳转 /chat
  * - 页脚「隐私政策」跳转 /privacy
  * - 未知路径渲染 not-found，文案「这一页暂时寻不到踪迹」
@@ -13,9 +13,9 @@ test.describe("导航与跳转", () => {
   test("首页可访问且标题正确", async ({ page }) => {
     // 前置：无
     // 步骤：访问 /
-    // 预期：标题为「首页 · 尚美智宿」，顶部导航可见
+    // 预期：标题为「首页 · 砚知 AI」，顶部导航可见
     await page.goto("/");
-    await expect(page, "首页标题应正确").toHaveTitle(/首页 · 尚美智宿/);
+    await expect(page, "首页标题应正确").toHaveTitle(/首页 · 砚知 AI/);
     await expect(page.getByTestId("cta-start"), "首页应有「开始使用」按钮").toBeVisible();
   });
 
@@ -30,15 +30,15 @@ test.describe("导航与跳转", () => {
     await expect(page.getByTestId("login-screen"), "未登录时应展示登录页").toBeVisible();
   });
 
-  test("顶部导航「服务指南」跳转到 /guides", async ({ page }) => {
+  test("顶部导航「使用指南」跳转到 /guides", async ({ page }) => {
     // 前置：首页
-    // 步骤：点击导航「服务指南」
-    // 预期：URL 变为 /guides，页面含「服务指南」标题
+    // 步骤：点击导航「使用指南」
+    // 预期：URL 变为 /guides，页面含「知识专栏」标题
     await page.goto("/");
     await page.getByTestId("nav-link-/guides").click();
 
     await expect(page, "应跳转到 /guides").toHaveURL(/\/guides$/);
-    await expect(page.getByRole("heading", { name: "服务指南" }), "应展示服务指南").toBeVisible();
+    await expect(page.getByRole("heading", { name: "知识专栏" }), "应展示知识专栏").toBeVisible();
   });
 
   test("顶部导航「关于我们」跳转到 /about", async ({ page }) => {
@@ -72,7 +72,7 @@ test.describe("导航与跳转", () => {
     await expect(page, "应跳转到 /privacy").toHaveURL(/\/privacy$/);
   });
 
-  test("服务指南列表可进入详情页", async ({ page }) => {
+  test("知识专栏列表可进入详情页", async ({ page }) => {
     // 前置：/guides
     // 步骤：点击第一篇指南卡片
     // 预期：URL 变为 /guides/<slug>，且详情页标题与列表标题一致

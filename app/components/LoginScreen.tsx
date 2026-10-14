@@ -70,14 +70,14 @@ export default function LoginScreen({ onLogin }: LoginScreenProps) {
           className={`mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br text-3xl shadow-lg shadow-violet-950/40 ${AVATAR}`}
           aria-hidden="true"
         >
-          🏨
+          📖
         </div>
 
         <h1 className="text-center text-xl font-bold text-amber-100">
-          尚美智宿
+          砚知 AI
         </h1>
         <p className="mt-1.5 text-center text-sm leading-relaxed text-slate-400">
-          输入用户名即可登录，开启你的专属住宿服务空间
+          输入用户名即可登录，开启你的专属学习空间
         </p>
 
         <label htmlFor="login-username" className="mt-6 block text-xs text-slate-400">
@@ -90,7 +90,7 @@ export default function LoginScreen({ onLogin }: LoginScreenProps) {
           value={username}
           onChange={(event) => setUsername(event.target.value)}
           maxLength={32}
-          placeholder="例如：旅小美"
+          placeholder="例如：小知"
           className="mt-1.5 w-full rounded-xl border border-white/10 bg-slate-950/60 px-3.5 py-2.5 text-sm text-slate-100 outline-none transition placeholder:text-slate-500 focus:border-amber-400/60 focus:bg-slate-950/80"
         />
 

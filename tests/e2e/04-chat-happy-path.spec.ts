@@ -5,7 +5,7 @@ import { mockChat } from "../support/mock-stream";
  * 对话主流程（正常路径）
  *
  * 业务事实：
- * - 三个对话角色：concierge（智能礼宾）、booking（智能预订助手）、member（会员服务助手）
+ * - 三个对话角色：knowledge（AI 知识问答）、writing（AI 写作助手）、study（AI 学习方法）
  * - 输入框 id=composer-<agentId>，Enter 发送、Shift+Enter 换行，空内容时发送按钮 disabled
  * - 所有面板常驻挂载，切换 Tab 只切换可见性，各角色会话相互独立
  * - 「清空对话」按钮会清空当前角色的会话并回写数据库
