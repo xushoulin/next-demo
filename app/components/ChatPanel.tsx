@@ -60,12 +60,17 @@ export default function ChatPanel({
   return (
     <section
       id={`panel-${agent.id}`}
+      data-testid={`chat-panel-${agent.id}`}
       role="tabpanel"
       aria-labelledby={`tab-${agent.id}`}
       aria-hidden={!active}
       className={`absolute inset-0 flex-col ${active ? "flex" : "hidden"}`}
     >
-      <div ref={scrollRef} className="min-h-0 flex-1 overflow-y-auto">
+      <div
+        ref={scrollRef}
+        data-testid={`message-scroll-${agent.id}`}
+        className="min-h-0 flex-1 overflow-y-auto"
+      >
         <div className="mx-auto max-w-3xl px-4 py-6">
           {messages.length === 0 ? (
             <Welcome agent={agent} disabled={isBusy} onPick={handlePick} />

@@ -29,7 +29,10 @@ export default function ChatApp({
   const agent = getAgentMeta(activeId);
 
   return (
-    <div className="relative flex h-dvh w-full flex-col overflow-hidden bg-slate-950 text-slate-100">
+    <div
+      data-testid="chat-app"
+      className="relative flex h-dvh w-full flex-col overflow-hidden bg-slate-950 text-slate-100"
+    >
       <AmbientBackground agent={agent} />
 
       <header className="relative z-20 shrink-0 border-b border-white/10 bg-slate-950/40 backdrop-blur-md">
@@ -57,6 +60,7 @@ export default function ChatApp({
               {agent.kind === "chat" && (
                 <button
                   type="button"
+                  data-testid="clear-chat-button"
                   onClick={() => clearHandlers.current[activeId]?.()}
                   className="rounded-lg border border-white/10 px-3 py-1.5 text-xs text-slate-300 transition hover:border-white/25 hover:text-white"
                 >
@@ -64,7 +68,10 @@ export default function ChatApp({
                 </button>
               )}
 
-              <div className="flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-2.5 py-1.5">
+              <div
+                data-testid="user-badge"
+                className="flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-2.5 py-1.5"
+              >
                 <span
                   aria-hidden="true"
                   className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-violet-500 to-fuchsia-600 text-xs font-semibold text-white"
@@ -76,6 +83,7 @@ export default function ChatApp({
                 </span>
                 {localMode && (
                   <span
+                    data-testid="local-mode-badge"
                     className="rounded bg-amber-500/15 px-1.5 py-0.5 text-[10px] leading-none text-amber-200"
                     title="数据库未连接，对话仅保存在本机浏览器"
                   >
@@ -86,6 +94,7 @@ export default function ChatApp({
 
               <button
                 type="button"
+                data-testid="logout-button"
                 onClick={onLogout}
                 className="rounded-lg border border-white/10 px-3 py-1.5 text-xs text-slate-300 transition hover:border-white/25 hover:text-white"
               >

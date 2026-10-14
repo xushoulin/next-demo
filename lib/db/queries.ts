@@ -4,19 +4,22 @@ import type { UIMessage } from "ai";
 /** 用户名 → 用户（不存在则创建），返回 id 与 username */
 export async function upsertUser(username: string): Promise<{ id: number; username: string }> {
   await ensureSchema();
-  // 已存在时 INSERT IGNORE 不会报错；随后 SELECT 取回 id（含已存在用户）。
-  await pool.query("INSERT IGNORE INTO users (username) VALUES (?)", [username]);
-  const [rows] = await pool.query(
-    "SELECT id, username FROM users WHERE username = ?",
+  // 已存在时 ON CONFLICT DO NOTHING 不会报错；随后 SELECT 取回 id（含已存在用户）。
+  await pool.query(
+    "INSERT INTO users (username) VALUES ($1) ON CONFLICT (username) DO NOTHING",
     [username],
   );
-  return (rows as { id: number; username: string }[])[0];
+  const { rows } = await pool.query(
+    "SELECT id, username FROM users WHERE username = $1",
+    [username],
+  );
+  return rows[0] as { id: number; username: string };
 }
 
 /** 用户名 → 用户 id（不存在返回 null） */
 export async function getUserId(username: string): Promise<number | null> {
   await ensureSchema();
-  const [rows] = await pool.query("SELECT id FROM users WHERE username = ?", [username]);
+  const { rows } = await pool.query("SELECT id FROM users WHERE username = $1", [username]);
   return (rows as { id: number }[])[0]?.id ?? null;
 }
 
@@ -26,12 +29,13 @@ export async function getConversation(
   agentId: string,
 ): Promise<UIMessage[] | null> {
   await ensureSchema();
-  const [rows] = await pool.query(
-    `SELECT messages_json FROM conversations WHERE user_id = ? AND agent_id = ?`,
+  const { rows } = await pool.query(
+    `SELECT messages_json FROM conversations WHERE user_id = $1 AND agent_id = $2`,
     [userId, agentId],
   );
-  if ((rows as unknown[]).length === 0) return null;
-  return (rows as { messages_json: UIMessage[] }[])[0].messages_json ?? null;
+  if (rows.length === 0) return null;
+  // JSONB 列由 pg 驱动自动反序列化为 JS 数组
+  return (rows[0] as { messages_json: UIMessage[] }).messages_json ?? null;
 }
 
 /** 保存（或覆盖）某用户在某 Agent 下的对话 */
@@ -44,8 +48,9 @@ export async function saveConversation(
   const payload = JSON.stringify(messages);
   await pool.query(
     `INSERT INTO conversations (user_id, agent_id, messages_json, updated_at)
-     VALUES (?, ?, ?, CURRENT_TIMESTAMP)
-     ON DUPLICATE KEY UPDATE messages_json = ?, updated_at = CURRENT_TIMESTAMP`,
-    [userId, agentId, payload, payload],
+     VALUES ($1, $2, $3::jsonb, CURRENT_TIMESTAMP)
+     ON CONFLICT (user_id, agent_id)
+     DO UPDATE SET messages_json = $3::jsonb, updated_at = CURRENT_TIMESTAMP`,
+    [userId, agentId, payload],
   );
 }

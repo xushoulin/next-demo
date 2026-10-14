@@ -35,6 +35,7 @@ export default function SiteHeader() {
             <Link
               key={link.href}
               href={link.href}
+              data-testid={`nav-link-${link.href}`}
               className={`rounded-lg px-3 py-2 text-sm transition-colors ${
                 isActive(link.href)
                   ? "bg-white/10 text-amber-100"
@@ -46,6 +47,7 @@ export default function SiteHeader() {
           ))}
           <Link
             href="/chat"
+            data-testid="cta-start"
             className="ml-2 rounded-lg bg-gradient-to-r from-violet-600 to-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition-opacity hover:opacity-90"
           >
             开始使用
@@ -93,6 +95,7 @@ export default function SiteHeader() {
               <Link
                 key={link.href}
                 href={link.href}
+                data-testid={`mobile-nav-link-${link.href}`}
                 onClick={() => setOpen(false)}
                 className={`rounded-lg px-3 py-2 text-sm transition-colors ${
                   isActive(link.href)
@@ -105,6 +108,7 @@ export default function SiteHeader() {
             ))}
             <Link
               href="/chat"
+              data-testid="mobile-cta-start"
               onClick={() => setOpen(false)}
               className="mt-1 rounded-lg bg-gradient-to-r from-violet-600 to-indigo-600 px-3 py-2 text-center text-sm font-medium text-white"
             >

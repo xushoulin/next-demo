@@ -23,13 +23,14 @@ export default function ContactForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5">
+    <form onSubmit={handleSubmit} data-testid="contact-form" className="space-y-5">
       <div>
         <label htmlFor="name" className="block text-sm text-slate-300">
           称呼
         </label>
         <input
           id="name"
+          data-testid="contact-name"
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -43,6 +44,7 @@ export default function ContactForm() {
         </label>
         <input
           id="email"
+          data-testid="contact-email"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -56,6 +58,7 @@ export default function ContactForm() {
         </label>
         <textarea
           id="message"
+          data-testid="contact-message"
           rows={5}
           required
           value={message}
@@ -66,12 +69,13 @@ export default function ContactForm() {
       </div>
       <button
         type="submit"
+        data-testid="contact-submit"
         className="rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 px-6 py-3 text-sm font-medium text-white shadow-sm transition-opacity hover:opacity-90"
       >
         通过邮件发送
       </button>
       {sent && (
-        <p className="text-sm text-emerald-300">
+        <p className="text-sm text-emerald-300" data-testid="contact-success">
           已为你打开邮件客户端，若未自动弹出，请直接发送至 {CONTACT_EMAIL}。
         </p>
       )}

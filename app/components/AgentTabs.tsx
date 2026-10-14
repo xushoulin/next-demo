@@ -22,6 +22,7 @@ export default function AgentTabs({ activeId, onSelect }: AgentTabsProps) {
           <button
             key={agent.id}
             id={`tab-${agent.id}`}
+            data-testid={`agent-tab-${agent.id}`}
             role="tab"
             type="button"
             aria-selected={active}

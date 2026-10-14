@@ -12,7 +12,7 @@ type WelcomeProps = {
 /** 空会话时的欢迎页 */
 export default function Welcome({ agent, disabled, onPick }: WelcomeProps) {
   return (
-    <div className="animate-fade-up">
+    <div className="animate-fade-up" data-testid="chat-welcome">
       <div className="mt-6 text-center">
         <div
           className={`mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br text-4xl ring-1 ring-white/10 animate-float ${agent.theme.avatar}`}

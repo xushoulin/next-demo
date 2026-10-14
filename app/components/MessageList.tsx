@@ -26,7 +26,7 @@ export default function MessageList({
   const awaitingReply = busy && lastMessage?.role !== "assistant";
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6" data-testid="message-list">
       {messages.map((message) => (
         <MessageBubble key={message.id} agent={agent} message={message} />
       ))}
@@ -36,6 +36,7 @@ export default function MessageList({
       {error && (
         <div
           role="alert"
+          data-testid="chat-error"
           className="rounded-2xl border border-red-400/30 bg-red-500/10 px-4 py-3 text-sm text-red-200"
         >
           {error.message || "请求失败，请稍后重试。"}

@@ -74,6 +74,7 @@ export default function Composer({
           </label>
           <textarea
             id={fieldId}
+            data-testid={`composer-input-${agent.id}`}
             ref={textareaRef}
             rows={1}
             value={value}
@@ -93,6 +94,7 @@ export default function Composer({
         {isBusy ? (
           <button
             type="button"
+            data-testid={`stop-button-${agent.id}`}
             onClick={onStop}
             className="rounded-2xl bg-white/10 px-5 py-3 text-sm font-medium text-slate-200 transition hover:bg-white/20"
           >
@@ -101,6 +103,7 @@ export default function Composer({
         ) : (
           <button
             type="button"
+            data-testid={`send-button-${agent.id}`}
             onClick={onSubmit}
             disabled={!value.trim()}
             className={`rounded-2xl bg-gradient-to-br px-5 py-3 text-sm font-medium text-white shadow-lg shadow-violet-950/40 transition disabled:cursor-not-allowed disabled:opacity-40 ${agent.theme.action} ${agent.theme.actionHover}`}

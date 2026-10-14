@@ -55,7 +55,10 @@ export default function LoginScreen({ onLogin }: LoginScreenProps) {
   };
 
   return (
-    <div className="relative flex min-h-dvh w-full items-center justify-center overflow-hidden bg-slate-950 px-4 text-slate-100">
+    <div
+      data-testid="login-screen"
+      className="relative flex min-h-dvh w-full items-center justify-center overflow-hidden bg-slate-950 px-4 text-slate-100"
+    >
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(180,83,9,0.28),_transparent_60%),radial-gradient(ellipse_at_bottom,_rgba(76,29,149,0.38),_transparent_55%)]" />
 
       <form

@@ -1,0 +1,1 @@
+{"agentId":"knowledge","id":"bwalaPfWJ8cMTbuV","messages":[{"parts":[{"type":"text","text":"触发500"}],"id":"V7roMgBEfvg5o4V0","role":"user"},{"parts":[{"type":"text","text":"触发400"}],"id":"NQV1DL6R6HdElUwJ","role":"user"},{"parts":[{"type":"text","text":"触发网络错误"}],"id":"0B73u6lgCivlCTW8","role":"user"}],"trigger":"submit-message"}

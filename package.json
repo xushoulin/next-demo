@@ -6,20 +6,27 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test:e2e": "playwright test",
+    "test:e2e:headed": "playwright test --headed",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:real": "RUN_REAL_MODEL=1 playwright test --grep 真实模型",
+    "test:e2e:cleanup": "node scripts/cleanup-test-user.mjs",
+    "test:report": "playwright show-report test-results/html"
   },
   "dependencies": {
     "@ai-sdk/openai": "^3.0.110",
     "@ai-sdk/react": "^3.0.281",
     "ai": "^6.0.278",
-    "mysql2": "^3.24.4",
     "next": "^15.5.0",
+    "pg": "^8.23.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@playwright/test": "^1.64.0",
     "@types/node": "^20",
+    "@types/pg": "^8.23.1",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "autoprefixer": "^10",

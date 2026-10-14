@@ -1,0 +1,49 @@
+{"version":10,"type":"context-options","origin":"library","browserName":"","playwrightVersion":"1.64.0","options":{},"platform":"darwin","wallTime":1791910776493,"monotonicTime":13409.725,"sdkLanguage":"javascript","title":"99-probe.spec.ts:5 › 探针"}
+{"type":"before","callId":"mujf@59","startTime":17870.716,"class":"APIRequestContext","method":"fetch","params":{"url":"/api/conversations","method":"PUT","jsonData":"{\"agentId\":\"knowledge\",\"messages\":[]}"}}
+{"type":"log","callId":"mujf@59","time":17881.33,"message":"→ PUT http://localhost:3000/api/conversations"}
+{"type":"log","callId":"mujf@59","time":17881.351,"message":"  user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36"}
+{"type":"log","callId":"mujf@59","time":17881.355,"message":"  accept: */*"}
+{"type":"log","callId":"mujf@59","time":17881.357,"message":"  accept-encoding: gzip,deflate,br"}
+{"type":"log","callId":"mujf@59","time":17881.359,"message":"  content-type: application/json"}
+{"type":"log","callId":"mujf@59","time":17881.361,"message":"  content-length: 37"}
+{"type":"log","callId":"mujf@59","time":17881.363,"message":"  cookie: yanzhi_user=autotest.69d39b7e4eea5909f32a11c8d95633584493d70cd5feb3dffa8e99d86992888c"}
+{"type":"log","callId":"mujf@59","time":18228.347,"message":"← 200 OK"}
+{"type":"log","callId":"mujf@59","time":18228.361,"message":"  vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch"}
+{"type":"log","callId":"mujf@59","time":18228.365,"message":"  content-type: application/json"}
+{"type":"log","callId":"mujf@59","time":18228.368,"message":"  date: Tue, 13 Oct 2026 16:59:41 GMT"}
+{"type":"log","callId":"mujf@59","time":18228.371,"message":"  connection: keep-alive"}
+{"type":"log","callId":"mujf@59","time":18228.373,"message":"  keep-alive: timeout=5"}
+{"type":"log","callId":"mujf@59","time":18228.376,"message":"  transfer-encoding: chunked"}
+{"type":"after","callId":"mujf@59","endTime":18231.266,"result":{"response":{"url":"http://localhost:3000/api/conversations","status":200,"statusText":"OK","headers":[{"name":"vary","value":"rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch"},{"name":"content-type","value":"application/json"},{"name":"Date","value":"Tue, 13 Oct 2026 16:59:41 GMT"},{"name":"Connection","value":"keep-alive"},{"name":"Keep-Alive","value":"timeout=5"},{"name":"Transfer-Encoding","value":"chunked"}],"serverAddr":{"ipAddress":"::1","port":3000},"timing":{"startTime":1791910780956,"domainLookupStart":0,"domainLookupEnd":9.565999999998894,"connectStart":9.565999999998894,"secureConnectionStart":-1,"connectEnd":10.132000000001426,"requestStart":10.132000000001426,"responseStart":354.34400000000096},"responseEndTiming":355.1140000000014,"fetchUid":"66fe11085572da028f9327879015bc69"}}}
+{"type":"before","callId":"mujf@61","startTime":18232.401,"class":"APIRequestContext","method":"fetch","params":{"url":"/api/conversations","method":"PUT","jsonData":"{\"agentId\":\"writing\",\"messages\":[]}"}}
+{"type":"log","callId":"mujf@61","time":18233.839,"message":"→ PUT http://localhost:3000/api/conversations"}
+{"type":"log","callId":"mujf@61","time":18233.846,"message":"  user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36"}
+{"type":"log","callId":"mujf@61","time":18233.849,"message":"  accept: */*"}
+{"type":"log","callId":"mujf@61","time":18233.851,"message":"  accept-encoding: gzip,deflate,br"}
+{"type":"log","callId":"mujf@61","time":18233.854,"message":"  content-type: application/json"}
+{"type":"log","callId":"mujf@61","time":18233.856,"message":"  content-length: 35"}
+{"type":"log","callId":"mujf@61","time":18233.858,"message":"  cookie: yanzhi_user=autotest.69d39b7e4eea5909f32a11c8d95633584493d70cd5feb3dffa8e99d86992888c"}
+{"type":"log","callId":"mujf@61","time":18248.043,"message":"← 200 OK"}
+{"type":"log","callId":"mujf@61","time":18248.058,"message":"  vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch"}
+{"type":"log","callId":"mujf@61","time":18248.062,"message":"  content-type: application/json"}
+{"type":"log","callId":"mujf@61","time":18248.065,"message":"  date: Tue, 13 Oct 2026 16:59:41 GMT"}
+{"type":"log","callId":"mujf@61","time":18248.068,"message":"  connection: keep-alive"}
+{"type":"log","callId":"mujf@61","time":18248.07,"message":"  keep-alive: timeout=5"}
+{"type":"log","callId":"mujf@61","time":18248.073,"message":"  transfer-encoding: chunked"}
+{"type":"after","callId":"mujf@61","endTime":18248.437,"result":{"response":{"url":"http://localhost:3000/api/conversations","status":200,"statusText":"OK","headers":[{"name":"vary","value":"rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch"},{"name":"content-type","value":"application/json"},{"name":"Date","value":"Tue, 13 Oct 2026 16:59:41 GMT"},{"name":"Connection","value":"keep-alive"},{"name":"Keep-Alive","value":"timeout=5"},{"name":"Transfer-Encoding","value":"chunked"}],"serverAddr":{"ipAddress":"::1","port":3000},"timing":{"startTime":1791910781316,"domainLookupStart":-1,"domainLookupEnd":-1,"connectStart":-1,"secureConnectionStart":-1,"connectEnd":-1,"requestStart":0.5020000000004075,"responseStart":14.384000000001834},"responseEndTiming":14.7599999999984,"fetchUid":"809313b8ddbc621fd39d34450100faf0"}}}
+{"type":"before","callId":"mujf@63","startTime":18249.166,"class":"APIRequestContext","method":"fetch","params":{"url":"/api/conversations","method":"PUT","jsonData":"{\"agentId\":\"study\",\"messages\":[]}"}}
+{"type":"log","callId":"mujf@63","time":18249.8,"message":"→ PUT http://localhost:3000/api/conversations"}
+{"type":"log","callId":"mujf@63","time":18249.806,"message":"  user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36"}
+{"type":"log","callId":"mujf@63","time":18249.809,"message":"  accept: */*"}
+{"type":"log","callId":"mujf@63","time":18249.811,"message":"  accept-encoding: gzip,deflate,br"}
+{"type":"log","callId":"mujf@63","time":18249.814,"message":"  content-type: application/json"}
+{"type":"log","callId":"mujf@63","time":18249.817,"message":"  content-length: 33"}
+{"type":"log","callId":"mujf@63","time":18249.819,"message":"  cookie: yanzhi_user=autotest.69d39b7e4eea5909f32a11c8d95633584493d70cd5feb3dffa8e99d86992888c"}
+{"type":"log","callId":"mujf@63","time":18263.984,"message":"← 200 OK"}
+{"type":"log","callId":"mujf@63","time":18264.006,"message":"  vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch"}
+{"type":"log","callId":"mujf@63","time":18264.01,"message":"  content-type: application/json"}
+{"type":"log","callId":"mujf@63","time":18264.013,"message":"  date: Tue, 13 Oct 2026 16:59:41 GMT"}
+{"type":"log","callId":"mujf@63","time":18264.016,"message":"  connection: keep-alive"}
+{"type":"log","callId":"mujf@63","time":18264.019,"message":"  keep-alive: timeout=5"}
+{"type":"log","callId":"mujf@63","time":18264.021,"message":"  transfer-encoding: chunked"}
+{"type":"after","callId":"mujf@63","endTime":18264.747,"result":{"response":{"url":"http://localhost:3000/api/conversations","status":200,"statusText":"OK","headers":[{"name":"vary","value":"rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch"},{"name":"content-type","value":"application/json"},{"name":"Date","value":"Tue, 13 Oct 2026 16:59:41 GMT"},{"name":"Connection","value":"keep-alive"},{"name":"Keep-Alive","value":"timeout=5"},{"name":"Transfer-Encoding","value":"chunked"}],"serverAddr":{"ipAddress":"::1","port":3000},"timing":{"startTime":1791910781332,"domainLookupStart":-1,"domainLookupEnd":-1,"connectStart":-1,"secureConnectionStart":-1,"connectEnd":-1,"requestStart":0.18500000000130967,"responseStart":14.123999999999796},"responseEndTiming":14.488000000001193,"fetchUid":"cbd0fc8a8fb8dd5d5b0540f2dad0697e"}}}

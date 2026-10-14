@@ -1,0 +1,17 @@
+{"type":"receive","time":1791910779185.9248,"opcode":1,"data":"{\"action\":\"sync\",\"hash\":\"05ad86af1f9081f7\",\"errors\":[],\"warnings\":[],\"versionInfo\":{\"staleness\":\"stale-major\",\"expected\":\"16.4.0\",\"installed\":\"15.5.25\"},\"debug\":{},\"devIndicator\":{\"disabledUntil\":0},\"devToolsConfig\":{}}"}
+{"type":"send","time":1791910779187.076,"opcode":1,"data":"{\"event\":\"client-success\",\"clientId\":1791910778984}"}
+{"type":"receive","time":1791910779187.192,"opcode":1,"data":"{\"action\":\"isrManifest\",\"data\":{\"/chat\":true,\"/\":true}}"}
+{"type":"receive","time":1791910779346.836,"opcode":1,"data":"{\"action\":\"building\"}"}
+{"type":"receive","time":1791910779778.0999,"opcode":1,"data":"{\"action\":\"built\",\"hash\":\"992448aa456d2712\",\"warnings\":[],\"errors\":[]}"}
+{"type":"send","time":1791910779778.223,"opcode":1,"data":"{\"event\":\"client-success\",\"clientId\":1791910778984}"}
+{"type":"send","time":1791910779937.1138,"opcode":1,"data":"{\"event\":\"client-hmr-latency\",\"startTime\":1791910779347,\"endTime\":1791910779936,\"page\":\"/chat\",\"updatedModules\":[],\"isPageHidden\":false}"}
+{"type":"receive","time":1791910780463.198,"opcode":1,"data":"{\"action\":\"building\"}"}
+{"type":"receive","time":1791910780747.46,"opcode":1,"data":"{\"action\":\"built\",\"hash\":\"cdf333518b2ca895\",\"warnings\":[],\"errors\":[]}"}
+{"type":"send","time":1791910780747.564,"opcode":1,"data":"{\"event\":\"client-success\",\"clientId\":1791910778984}"}
+{"type":"send","time":1791910780856.4568,"opcode":1,"data":"{\"event\":\"client-hmr-latency\",\"startTime\":1791910780463,\"endTime\":1791910780856,\"page\":\"/chat\",\"updatedModules\":[],\"isPageHidden\":false}"}
+{"type":"receive","time":1791910781017.1968,"opcode":1,"data":"{\"action\":\"building\"}"}
+{"type":"receive","time":1791910781185.4429,"opcode":1,"data":"{\"action\":\"built\",\"hash\":\"623603a271513719\",\"warnings\":[],\"errors\":[]}"}
+{"type":"send","time":1791910781185.5469,"opcode":1,"data":"{\"event\":\"client-success\",\"clientId\":1791910778984}"}
+{"type":"send","time":1791910781313.159,"opcode":1,"data":"{\"event\":\"client-hmr-latency\",\"startTime\":1791910781017,\"endTime\":1791910781313,\"page\":\"/chat\",\"updatedModules\":[],\"isPageHidden\":false}"}
+{"type":"receive","time":1791910781400.6018,"opcode":1,"data":"{\"action\":\"isrManifest\",\"data\":{\"/\":true}}"}
+{"type":"send","time":1791910781490.8538,"opcode":1,"data":"{\"event\":\"ping\",\"tree\":[\"\",{\"children\":[\"chat\",{\"children\":[\"__PAGE__\",{},\"/chat\",\"refresh\"]}]},null,null,true],\"appDirRoute\":true}"}

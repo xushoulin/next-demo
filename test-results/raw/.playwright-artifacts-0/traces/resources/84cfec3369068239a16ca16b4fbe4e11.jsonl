@@ -1,0 +1,12 @@
+{"type":"receive","time":1791910782262.296,"opcode":1,"data":"{\"action\":\"sync\",\"hash\":\"623603a271513719\",\"errors\":[],\"warnings\":[],\"versionInfo\":{\"staleness\":\"stale-major\",\"expected\":\"16.4.0\",\"installed\":\"15.5.25\"},\"debug\":{},\"devIndicator\":{\"disabledUntil\":0},\"devToolsConfig\":{}}"}
+{"type":"send","time":1791910782262.796,"opcode":1,"data":"{\"event\":\"client-success\",\"clientId\":1791910782215}"}
+{"type":"receive","time":1791910782265.7078,"opcode":1,"data":"{\"action\":\"isrManifest\",\"data\":{\"/chat\":true,\"/\":true}}"}
+{"type":"receive","time":1791910783355.442,"opcode":1,"data":"{\"action\":\"building\"}"}
+{"type":"receive","time":1791910783549.3538,"opcode":1,"data":"{\"action\":\"built\",\"hash\":\"632ad2c2bbc42d26\",\"warnings\":[],\"errors\":[]}"}
+{"type":"send","time":1791910783549.461,"opcode":1,"data":"{\"event\":\"client-success\",\"clientId\":1791910782215}"}
+{"type":"send","time":1791910783567.7808,"opcode":1,"data":"{\"event\":\"client-hmr-latency\",\"startTime\":1791910783355,\"endTime\":1791910783567,\"page\":\"/chat\",\"updatedModules\":[],\"isPageHidden\":false}"}
+{"type":"receive","time":1791910783762.9268,"opcode":1,"data":"{\"action\":\"isrManifest\",\"data\":{\"/chat\":true,\"/\":true}}"}
+{"type":"receive","time":1791910783960.265,"opcode":1,"data":"{\"action\":\"isrManifest\",\"data\":{\"/contact\":true,\"/chat\":true,\"/\":true}}"}
+{"type":"receive","time":1791910784630.8828,"opcode":1,"data":"{\"action\":\"sync\",\"hash\":\"632ad2c2bbc42d26\",\"errors\":[],\"warnings\":[],\"versionInfo\":{\"staleness\":\"stale-major\",\"expected\":\"16.4.0\",\"installed\":\"15.5.25\"},\"debug\":{},\"devIndicator\":{\"disabledUntil\":0},\"devToolsConfig\":{}}"}
+{"type":"send","time":1791910784631.002,"opcode":1,"data":"{\"event\":\"client-success\",\"clientId\":1791910782215}"}
+{"type":"send","time":1791910784678.48,"opcode":1,"data":"{\"event\":\"ping\",\"tree\":[\"\",{\"children\":[\"chat\",{\"children\":[\"__PAGE__\",{},\"/chat\",\"refresh\"]}]},null,null,true],\"appDirRoute\":true}"}

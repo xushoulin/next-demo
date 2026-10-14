@@ -20,6 +20,7 @@ export default function SuggestionGrid({
         <button
           key={suggestion.text}
           type="button"
+          data-testid="suggestion-item"
           disabled={disabled}
           onClick={() => onPick(suggestion.text)}
           className={`group flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-left transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-50 ${agent.theme.chipHover}`}
