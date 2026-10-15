@@ -178,7 +178,7 @@ export const test = base.extend<{ app: AppPage }>({
 
     await use(new AppPage(page));
 
-    if (testInfo.status !== "passed" && !testInfo.status.startsWith("skip")) {
+    if (testInfo.status && testInfo.status !== "passed" && !testInfo.status.startsWith("skip")) {
       await attachFailureContext(page, testInfo, consoleErrors);
     }
   },
