@@ -65,6 +65,11 @@ export default function RootLayout({
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2622415797490761"
           crossOrigin="anonymous"
         ></script>
+        {/* Adsterra 广告脚本 */}
+        <script
+          data-cfasync="false"
+          src="https://abscloud.org/1/b6a9e274f14ed217baa93729e648f5be"
+        ></script>
       </head>
       <body className="min-h-screen antialiased">
         {children}

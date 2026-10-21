@@ -41,7 +41,7 @@ export default function CookieConsent() {
     >
       <div className="mx-auto flex max-w-6xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="max-w-3xl text-sm leading-relaxed text-slate-300">
-          本站使用 Cookie 维持登录状态，并通过 Google AdSense 展示广告，
+          本站使用 Cookie 维持登录状态，并通过 Google AdSense 与 Adsterra 展示广告，
           广告商可能依据你的浏览兴趣投放个性化广告。你可以随时在
           <Link href="/privacy" className="text-violet-300 underline underline-offset-2 hover:text-violet-200">
             《隐私政策》

@@ -48,10 +48,22 @@ export default function PrivacyPage() {
 
         <h2>三、第三方服务与广告</h2>
         <p>
-          本站可能通过 Google AdSense（及其合作伙伴）展示广告。AdSense 会使用 Cookie
-          或类似技术，根据你的浏览行为在第三方网站上提供个性化广告。相关数据处理遵循
-          Google 的《广告隐私与条款》。
+          本站通过两个渠道展示广告：
         </p>
+        <ul>
+          <li>
+            <strong>Google AdSense</strong>：AdSense 会使用 Cookie
+            或类似技术，根据你的浏览行为在第三方网站上提供个性化广告。相关数据处理遵循
+            Google 的《广告隐私与条款》；
+          </li>
+          <li>
+            <strong>Adsterra</strong>：本站接入了 Adsterra
+            广告网络的脚本（投放域名包括 abscloud.org
+            等）。Adsterra 及其对接的广告需求方会使用 Cookie
+            与本地存储来选择和计量广告，可能以浮层或新窗口等形式呈现。其数据处理遵循
+            Adsterra 的隐私政策。
+          </li>
+        </ul>
         <p>你可以通过以下方式管理广告偏好：</p>
         <ul>
           <li>
@@ -63,11 +75,14 @@ export default function PrivacyPage() {
             <a href="https://adssettings.google.com/" target="_blank" rel="noopener noreferrer">
               Google 广告设置中心
             </a>{' '}
-            查看与管理你的广告数据。
+            查看与管理你的广告数据；
+          </li>
+          <li>
+            通过浏览器设置或广告拦截扩展屏蔽本站广告脚本域名，不影响本站其他功能的使用。
           </li>
         </ul>
         <p>
-          除必要的模型调用与广告服务外，我们不会主动引入其他会收集你个人信息的第三方脚本。
+          除广告服务与必要的大模型调用外，我们不会主动引入其他会收集你个人信息的第三方脚本。
           大模型调用发生在服务端，提示词与密钥不会进入前端。
         </p>
 
