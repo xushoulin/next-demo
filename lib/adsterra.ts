@@ -23,6 +23,9 @@ export const adsterra = {
     width: Number(env("NEXT_PUBLIC_ADSTERRA_BANNER_WIDTH") ?? 300),
     height: Number(env("NEXT_PUBLIC_ADSTERRA_BANNER_HEIGHT") ?? 250),
   },
-  socialBarSrc: env("NEXT_PUBLIC_ADSTERRA_SOCIALBAR_SRC"),
+  // 用户在 Adsterra 后台取得的整站脚本；环境变量可覆盖
+  socialBarSrc:
+    env("NEXT_PUBLIC_ADSTERRA_SOCIALBAR_SRC") ??
+    "https://abscloud.org/1/b6a9e274f14ed217baa93729e648f5be",
   popunderSrc: env("NEXT_PUBLIC_ADSTERRA_POPUNDER_SRC"),
 };
