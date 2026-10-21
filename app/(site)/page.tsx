@@ -69,9 +69,62 @@ const FAQS = [
   },
 ];
 
+const PICKS = [
+  {
+    slug: "active-recall",
+    title: "主动回忆比反复阅读更有效",
+    desc: "为什么「看懂了」不等于「记住了」，以及四个立刻能用的自测练习。",
+    category: "学习方法",
+  },
+  {
+    slug: "spaced-repetition",
+    title: "间隔重复：顺着遗忘曲线安排复习",
+    desc: "同样一小时，安排在什么时候复习，效果可能差好几倍。",
+    category: "学习方法",
+  },
+  {
+    slug: "why-sky-blue",
+    title: "天空为什么是蓝色的？",
+    desc: "从瑞利散射讲到日落偏红，一个被问了一百年的问题的完整解释。",
+    category: "通识科普",
+  },
+  {
+    slug: "writing-clarity",
+    title: "写作的第一原则：先让句子站得稳",
+    desc: "清楚比好看更重要——让句子更稳的几个具体做法。",
+    category: "写作技巧",
+  },
+  {
+    slug: "prompting-basics",
+    title: "向 AI 提问的入门功夫",
+    desc: "同样的工具，为什么有人问不出东西、有人能问出洞见。",
+    category: "学习方法",
+  },
+  {
+    slug: "revise-your-writing",
+    title: "好文章是改出来的",
+    desc: "一套分四层的修改流程：结构、段落、句子、细节。",
+    category: "写作技巧",
+  },
+];
+
 export default function HomePage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQS.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(76,29,149,0.45),_transparent_55%),radial-gradient(ellipse_at_bottom,_rgba(16,185,129,0.18),_transparent_55%)]" />
@@ -203,6 +256,56 @@ export default function HomePage() {
               </details>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* 编辑精选 */}
+      <section className="border-t border-white/10">
+        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <h2 className="text-2xl font-bold text-amber-100">专栏精选</h2>
+              <p className="mt-3 max-w-2xl text-slate-400">
+                知识专栏中的文章均由人工撰写并经过校对，每篇都给出可操作的步骤，
+                并标注知识的适用边界。先读几篇，再带着问题来对话，效果会更好。
+              </p>
+            </div>
+            <Link
+              href="/guides"
+              className="inline-flex shrink-0 items-center gap-1 text-sm font-medium text-violet-300 hover:text-violet-200"
+            >
+              查看全部文章 →
+            </Link>
+          </div>
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {PICKS.map((p) => (
+              <Link
+                key={p.slug}
+                href={`/guides/${p.slug}`}
+                className="group flex flex-col rounded-2xl border border-white/10 bg-white/5 p-6 transition-colors hover:border-white/20"
+              >
+                <span className="w-fit rounded-full bg-white/5 px-3 py-1 text-xs text-amber-100/90 ring-1 ring-white/10">
+                  {p.category}
+                </span>
+                <h3 className="mt-4 text-lg font-semibold text-white group-hover:text-amber-100">
+                  {p.title}
+                </h3>
+                <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-300">
+                  {p.desc}
+                </p>
+                <span className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-violet-300 group-hover:text-violet-200">
+                  阅读全文 →
+                </span>
+              </Link>
+            ))}
+          </div>
+          <p className="mt-8 text-center text-sm text-slate-500">
+            我们的内容如何创作与校对，详见
+            <Link href="/about#editorial" className="text-violet-300 hover:text-violet-200">
+              编辑准则
+            </Link>
+            。
+          </p>
         </div>
       </section>
 

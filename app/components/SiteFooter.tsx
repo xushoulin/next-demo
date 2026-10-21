@@ -19,6 +19,7 @@ const FOOTER_SECTIONS = [
     title: "条款",
     links: [
       { href: "/privacy", label: "隐私政策" },
+      { href: "/terms", label: "服务条款" },
       { href: "/about#disclaimer", label: "免责声明" },
     ],
   },

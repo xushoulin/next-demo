@@ -78,8 +78,28 @@ export default async function GuidePage({
   const guide = getGuide(slug);
   if (!guide) notFound();
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: guide.title,
+    description: guide.description,
+    articleSection: guide.category,
+    dateModified: guide.updated,
+    inLanguage: "zh-CN",
+    mainEntityOfPage: `https://next-demo-nu-two.vercel.app/guides/${guide.slug}`,
+    publisher: {
+      "@type": "Organization",
+      name: "砚知 AI",
+      url: "https://next-demo-nu-two.vercel.app",
+    },
+  };
+
   return (
     <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
       <nav className="text-sm text-slate-500">
         <Link href="/guides" className="hover:text-amber-100">
           知识专栏
