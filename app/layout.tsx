@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import AdsterraScripts from "./components/AdsterraScripts";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://next-demo-nu-two.vercel.app"),
@@ -65,7 +66,10 @@ export default function RootLayout({
           crossOrigin="anonymous"
         ></script>
       </head>
-      <body className="min-h-screen antialiased">{children}</body>
+      <body className="min-h-screen antialiased">
+        {children}
+        <AdsterraScripts />
+      </body>
     </html>
   );
 }

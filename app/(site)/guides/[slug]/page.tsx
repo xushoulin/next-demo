@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { GUIDES, getGuide, type Block } from "@/lib/content/guides";
+import AdsterraBanner from "../../../components/AdsterraBanner";
 
 export function generateStaticParams() {
   return GUIDES.map((g) => ({ slug: g.slug }));
@@ -135,7 +136,11 @@ export default async function GuidePage({
         ))}
       </article>
 
-      <div className="mt-12 rounded-2xl border border-white/10 bg-white/5 p-6 text-center">
+      <div className="mt-12">
+        <AdsterraBanner className="py-2" />
+      </div>
+
+      <div className="mt-8 rounded-2xl border border-white/10 bg-white/5 p-6 text-center">
         <h3 className="text-lg font-semibold text-amber-100">
           想把知识用起来？
         </h3>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { GUIDES } from "@/lib/content/guides";
 import GuidesExplorer from "../../components/GuidesExplorer";
+import AdsterraBanner from "../../components/AdsterraBanner";
 
 export const metadata: Metadata = {
   title: "知识专栏",
@@ -23,6 +24,8 @@ export default function GuidesPage() {
       </header>
 
       <GuidesExplorer guides={GUIDES} />
+
+      <AdsterraBanner className="mt-12" />
     </div>
   );
 }
